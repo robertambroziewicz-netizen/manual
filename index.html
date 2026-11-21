@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Instrukcja MICROBike. Pierwsze uruchomienie Android Auto, połączenie z licznikiem Yamaha NMAX i pomoc w razie problemów.">
+  <title>MICROBike · Instrukcja</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#tresc">Przejdź do instrukcji</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="brand">MICROBike</p>
+        <h1>Android Auto na liczniku Yamaha NMAX</h1>
+        <p class="intro">Uruchom podgląd na telefonie, połącz licznik przez Bluetooth i wyświetl swoją mapę na skuterze.</p>
+        <a class="button" href="#pierwszy-start">Przejdź do konfiguracji</a>
+      </div>
+      <img src="microbike.jpg" width="1408" height="768" alt="" fetchpriority="high">
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Spis treści">
+      <a href="#pierwszy-start">Pierwsze uruchomienie</a>
+      <a href="#licznik">Połączenie z licznikiem</a>
+      <a href="#sterowanie">Mapa i sterowanie</a>
+      <a href="#funkcje">Funkcje dodatkowe</a>
+      <a href="#pomoc">Gdy coś nie działa</a>
+    </nav>
+
+    <main id="tresc" tabindex="-1">
+      <section id="pierwszy-start">
+        <h2>Pierwsze uruchomienie</h2>
+        <p>Przygotuj telefon z Androidem 12 lub nowszym, działające Android Auto oraz zainstalowane MICROBike. Instrukcja licznika dotyczy Yamahy NMAX 125 Tech Max 2025/2026 z modułem YCCU/Garmin CCU.</p>
+        <p class="callout">Konfigurację i kalibrację wykonuj na postoju.</p>
+        <ol class="steps">
+          <li><strong>Otwórz MICROBike.</strong> Po zaakceptowaniu informacji na start przejrzyj ekran <strong>Uprawnienia aplikacji</strong>. Na początek przyznaj dostęp do urządzeń w pobliżu, jeśli chcesz łączyć się z licznikiem. Zgody możesz później zmienić w ustawieniach aplikacji.</li>
+          <li><strong>Otwórz ustawienia Android Auto.</strong> W karcie strumienia nawigacji dotknij <strong>SET</strong>. Na dole ustawień stuknij <strong>Wersja</strong> 10 razy i potwierdź dostęp do trybu deweloperskiego Android Auto.</li>
+          <li><strong>Uruchom serwer.</strong> W menu <strong>⋮</strong> Android Auto wybierz <strong>Uruchom serwer jednostki centralnej</strong>. Na niektórych telefonach opcja nazywa się <strong>Włącz serwer radioodtwarzacza</strong>.</li>
+          <li><strong>Wróć do MICROBike.</strong> Podgląd powinien pojawić się po zestawieniu połączenia. Po ręcznym zatrzymaniu projekcji dotknij <strong>START</strong>, żeby ją wznowić. Podgląd możesz sprawdzić jeszcze przed podłączeniem licznika.</li>
+        </ol>
+        <p class="support-link"><a href="https://developer.android.com/training/cars/testing/dhu#running-dhu">Dokumentacja Google o serwerze Android Auto</a></p>
+      </section>
+
+      <section id="licznik">
+        <h2>Połączenie z licznikiem</h2>
+        <ol class="steps">
+          <li>Włącz zapłon i Bluetooth. W systemowych ustawieniach Bluetooth telefonu sparuj moduł licznika o nazwie zaczynającej się od <strong>YCCU</strong>.</li>
+          <li>Zamknij StreetCross lub inną aplikację używającą połączenia z licznikiem.</li>
+          <li>W MICROBike, w sekcji <strong>Moto Connect</strong>, wybierz <strong>Dodaj pojazd</strong> i dotknij wykrytego YCCU. Po połączeniu obraz pojawi się na liczniku, gdy Android Auto przekaże pierwszą klatkę. Zapisany pojazd możesz wybrać przy kolejnym uruchomieniu.</li>
+        </ol>
+        <p>Jeśli chcesz, włącz <strong>Autostart po włączeniu zapłonu</strong> dla zapisanego pojazdu. Ta opcja wznawia połączenie Bluetooth. Serwer Android Auto na telefonie musi już działać.</p>
+      </section>
+
+      <section id="sterowanie">
+        <h2>Mapa i sterowanie</h2>
+        <p>Wybierz aplikację nawigacji w Android Auto. Obraz i dotyk możesz sprawdzić w podglądzie na telefonie. Jeśli polecenie wyśrodkowania trafia w niewłaściwe miejsce, wybierz <strong>Ustaw punkt Wyśrodkuj</strong> i dotknij właściwego przycisku na podglądzie.</p>
+        <dl class="controls">
+          <dt>Dwa razy ↑</dt><dd>Przełącza tryb sterowania. Menu jest dostępne na postoju, gdy GPS telefonu potwierdza 0 km/h.</dd>
+          <dt>Dwa razy ↓</dt><dd>Uruchamia sterowanie głosowe Android Auto.</dd>
+          <dt>Tryb MAPA</dt><dd>Domyślnie pojedyncze ↑ zmienia poziom zbliżenia, a pojedyncze ↓ wykonuje polecenie Wstecz. Przypisania możesz zmienić w ustawieniach.</dd>
+          <dt>Tryb MEDIA</dt><dd>Pojedyncze ↑ przełącza utwór, a pojedyncze ↓ włącza odtwarzanie lub pauzę.</dd>
+        </dl>
+        <p>Przy drobnym lub zbyt dużym obrazie zmień <strong>gęstość obrazu DPI</strong> w ustawieniach MICROBike. Zmiana może na chwilę przerwać strumień, gdy Android Auto dopasowuje układ.</p>
+      </section>
+
+      <section id="funkcje">
+        <h2>Funkcje dodatkowe</h2>
+        <dl class="features">
+          <dt>Dom, Praca i Ulubione</dt><dd>W Mapach Google otwórz miejsce, wybierz <strong>Udostępnij → MICROBike</strong> i zapisz je w wybranej kategorii.</dd>
+          <dt>GPS i tryb dzień/noc</dt><dd>Dokładna lokalizacja umożliwia pomiar prędkości i statystyk jazdy oraz wybór motywu <strong>Auto</strong> według pory dnia. Jasny lub ciemny motyw możesz też wybrać ręcznie.</dd>
+          <dt>Rozmowy i muzyka</dt><dd>Dostęp do powiadomień umożliwia wyświetlanie na liczniku informacji o rozmówcy i utworze. Zgoda na stan telefonu pomaga dokładniej rozpoznawać połączenia.</dd>
+          <dt>Pasek licznika</dt><dd>Z boku widać stan baterii telefonu i napięcie akumulatora skutera. Dolny pasek przy włączonym GPS pokazuje w trybie mapy czas jazdy i średnią prędkość, a w trybie multimediów lub rozmowy pokazuje związane z nimi informacje.</dd>
+        </dl>
+      </section>
+
+      <section id="pomoc">
+        <h2>Gdy coś nie działa</h2>
+        <details>
+          <summary>Podgląd Android Auto się nie pojawia</summary>
+          <p>Sprawdź, czy serwer jednostki centralnej jest uruchomiony. Jeśli był włączony, zatrzymaj go w ustawieniach Android Auto, uruchom ponownie i wróć do MICROBike.</p>
+        </details>
+        <details>
+          <summary>MICROBike nie znajduje licznika</summary>
+          <p>Sprawdź zapłon, sparowanie z YCCU i zgodę <strong>Urządzenia w pobliżu</strong>. Rozłącz inne aplikacje korzystające z licznika, a następnie ponów próbę w Moto Connect.</p>
+        </details>
+        <details>
+          <summary>Projekcja znika po zgaszeniu ekranu na Xiaomi</summary>
+          <p>W ustawieniach telefonu otwórz informacje o aplikacji Android Auto. Jeżeli dostępny jest <strong>Autostart w tle</strong>, włącz go. W ustawieniach baterii aplikacji wybierz <strong>Bez ograniczeń</strong>. Jeśli system usypia również MICROBike, sprawdź te same ustawienia dla MICROBike. Nazwy i położenie opcji zależą od wersji MIUI lub HyperOS.</p>
+          <p class="support-link"><a href="https://www.mi.com/global/support/faq/details/KA-538010/">Pomoc Xiaomi dotycząca ograniczeń baterii</a></p>
+        </details>
+        <details>
+          <summary>Jak zgłosić problem</summary>
+          <p>Na dole pulpitu MICROBike dotknij <strong>Wyślij błąd do dewelopera</strong>. Opisz, co próbujesz zrobić, co widzisz i kiedy problem występuje. Możesz podać model telefonu i wersję Androida. Pomiń dane osobowe i hasła.</p>
+        </details>
+      </section>
+    </main>
+  </div>
+  <footer>MICROBike to niezależny projekt. Yamaha i Android Auto to nazwy ich właścicieli.</footer>
+</body>
+</html>
