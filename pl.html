@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pełna instrukcja MICROBike: szybki start, zgody aplikacji, uruchomienie serwera deweloperskiego Android Auto, połączenie z licznikiem Yamaha NMAX 125 Tech Max oraz opis wszystkich funkcji.">
+  <title>MICROBike · Instrukcja obsługi</title>
+  <link rel="icon" href="microbike.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="pl" href="pl.html">
+  <link rel="alternate" hreflang="it" href="it.html">
+  <link rel="alternate" hreflang="es" href="es.html">
+  <link rel="alternate" hreflang="fr" href="fr.html">
+  <link rel="alternate" hreflang="x-default" href="index.html">
+</head>
+<body>
+  <!--
+    Wspólne zrzuty ekranu dla wszystkich wersji językowych znajdują się w manual/images/
+    (01-ekran-powitalny.png .. 17-xiaomi-bateria.png).
+  -->
+
+  <a class="skip-link" href="#content">Przejdź do instrukcji</a>
+
+  <header class="hero">
+    <div class="topbar">
+      <nav class="lang-switch" aria-label="Wybór języka instrukcji">
+        <a href="index.html" hreflang="en" lang="en">English</a>
+        <a href="pl.html" hreflang="pl" lang="pl" aria-current="page">Polski</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+      </nav>
+    </div>
+    <div class="hero-inner">
+      <div>
+        <p class="brand">MICROBike</p>
+        <h1>Android Auto na liczniku Yamaha NMAX</h1>
+        <p class="intro">Odbieraj Android Auto lokalnie na telefonie, wyświetlaj mapę na ekranie TFT skutera Yamaha NMAX 125 Tech Max i steruj nawigacją, muzyką oraz połączeniami z kierownicy.</p>
+        <div class="hero-actions">
+          <a class="button" href="#quick-start">Szybki start (5 minut)</a>
+          <a class="button-secondary" href="#stream-calibration">Opis wszystkich funkcji</a>
+        </div>
+      </div>
+      <img src="microbike.png" width="640" height="640" alt="Logo MICROBike" fetchpriority="high">
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Spis treści">
+      <p class="nav-group">Szybki start</p>
+      <a href="#quick-start">1. Wymagania i zgody</a>
+      <a href="#aa-server">2. Serwer Android Auto</a>
+      <a href="#cluster-connect">3. Połączenie z licznikiem</a>
+
+      <p class="nav-group">Opis wszystkich funkcji</p>
+      <a href="#stream-calibration">Strumień nawigacji i kalibracja</a>
+      <a href="#cluster-display">Co widać na liczniku (TFT)</a>
+      <a href="#handlebar-osd">Kierownica i tryby OSD</a>
+      <a href="#moto-connect">Moto Connect i Autostart</a>
+      <a href="#display-settings">Obraz, mapa, motyw i DPI</a>
+      <a href="#saved-places">Dom, Praca i Ulubione</a>
+      <a href="#gps-stats">Prędkość GPS i statystyki</a>
+      <a href="#battery-alerts">Akumulator (AKU) i alarmy</a>
+      <a href="#permissions">Uprawnienia i prywatność</a>
+
+      <p class="nav-group">Wsparcie</p>
+      <a href="#troubleshooting">Gdy coś nie działa</a>
+    </nav>
+
+    <main id="content" tabindex="-1">
+      <p class="part-heading">Część 1 · Szybki start</p>
+
+      <section id="quick-start">
+        <h2>1. Wymagania, pierwsze uruchomienie i zgody</h2>
+        <p>Aby rozpocząć, przygotuj:</p>
+        <ul>
+          <li><strong>Telefon z Androidem 12 lub nowszym</strong> (API 31+).</li>
+          <li><strong>Zainstalowaną i włączoną aplikację Android Auto</strong> (na większości nowszych telefonów jest już wbudowana w system).</li>
+          <li><strong>Zainstalowane MICROBike</strong>.</li>
+          <li><strong>Skuter Yamaha NMAX 125 Tech Max (2025/2026)</strong> z modułem licznika <strong>YCCU / Garmin CCU</strong>. Sam podgląd Android Auto na telefonie możesz przetestować także w domu, bez skutera i Bluetooth.</li>
+        </ul>
+        <p class="callout"><strong>Bezpieczeństwo:</strong> całą konfigurację, parowanie Bluetooth i kalibrację punktu Wyśrodkuj wykonuj wyłącznie na postoju.</p>
+
+        <ol class="steps">
+          <li><strong>Zaakceptuj ekran powitalny.</strong> Po pierwszym uruchomieniu MICROBike zapoznaj się z ekranem <strong>Przed jazdą — Ważne informacje</strong> i dotknij <kbd>Rozumiem i akceptuję</kbd>.</li>
+          <li><strong>Przejdź przez kreator „Uprawnienia aplikacji”.</strong> Aplikacja poprosi kolejno o zgody. Każdą zgodę możesz nadać od razu albo pominąć przyciskiem <kbd>Pomiń</kbd> i włączyć później w ustawieniach.
+            <ul>
+              <li><strong>Urządzenia w pobliżu</strong> <span class="badge badge-req">do licznika</span> — wymagane do wykrywania i łączenia z YCCU oraz pomiaru napięcia akumulatora.</li>
+              <li><strong>Dokładna lokalizacja (GPS)</strong> <span class="badge badge-req">zalecana</span> — włącza prędkość GPS dla Android Auto, statystyki jazdy, automatyczny motyw dzień/noc oraz tryb <strong>MENU</strong> na postoju.</li>
+              <li><strong>Powiadomienia MICROBike</strong> <span class="badge badge-opt">Android 13+</span> — wyświetla na pasku systemowym informację o aktywnym połączeniu i GPS z szybkim przyciskiem zatrzymania.</li>
+              <li><strong>Stan telefonu</strong> i <strong>Dostęp do powiadomień (OSD)</strong> <span class="badge badge-opt">opcjonalne</span> — pozwalają wyświetlać na liczniku nazwę rozmówcy, czas połączenia i tytuł odtwarzanego utworu.</li>
+              <li><strong>Wyświetlanie nad innymi aplikacjami</strong> <span class="badge badge-opt">opcjonalne</span> — pozwala uruchamiać trasy z menu licznika (Dom, Praca, Ulubione), gdy MICROBike działa w tle.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="shot-grid shot-grid--2">
+          <!-- ZRZUT EKRANU: manual/images/01-ekran-powitalny.png -->
+          <figure class="shot">
+            <img src="images/01-ekran-powitalny.png"
+                 alt="Ekran powitalny MICROBike: Przed jazdą — Ważne informacje"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 01</span>
+              <code class="shot-file">images/01-ekran-powitalny.png</code>
+              <span class="shot-desc">Ekran powitalny „Przed jazdą — Ważne informacje” z przyciskiem „Rozumiem i akceptuję”.</span>
+            </div>
+            <figcaption><strong>Krok 1a.</strong> Ekran startowy z zasadami bezpieczeństwa.</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/02-uprawnienia-kreator.png -->
+          <figure class="shot">
+            <img src="images/02-uprawnienia-kreator.png"
+                 alt="Kreator Uprawnienia aplikacji w MICROBike"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 02</span>
+              <code class="shot-file">images/02-uprawnienia-kreator.png</code>
+              <span class="shot-desc">Kreator „Uprawnienia aplikacji” (krok 1 z 6 — Urządzenia w pobliżu).</span>
+            </div>
+            <figcaption><strong>Krok 1b.</strong> Kreator zgód — każdą z nich można nadać lub pominąć.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="aa-server">
+        <h2>2. Włączenie serwera deweloperskiego Android Auto</h2>
+        <p>MICROBike odbiera obraz bezpośrednio z lokalnego serwera wbudowanego w aplikację Android Auto na Twoim telefonie. Tryb programisty Android Auto włącza się <strong>tylko raz</strong>. Sam serwer jednostki centralnej należy uruchomić przed jazdą (jeśli wcześniej został zatrzymany lub telefon był restartowany).</p>
+
+        <ol class="steps">
+          <li><strong>Otwórz ustawienia Android Auto z poziomu MICROBike.</strong> Na górnej karcie <strong>STRUMIEŃ NAWIGACJI</strong> dotknij przycisku <kbd>SET</kbd>. Jeśli Android Auto nie jest jeszcze zainstalowane, zobaczysz przycisk <kbd>Otwórz Google Play</kbd>.</li>
+          <li><strong>Odblokuj tryb programisty (jednorazowo).</strong> W otwartych ustawieniach Android Auto przewiń na sam dół i <strong>stuknij 10 razy w pozycję „Wersja”</strong> (lub „Wersja i uprawnienia”).</li>
+          <li><strong>Potwierdź okno dialogowe.</strong> Gdy pojawi się komunikat <em>„Czy zezwolić na ustawienia programisty?”</em>, wybierz <strong>OK</strong>.</li>
+          <li><strong>Uruchom serwer jednostki centralnej.</strong> W prawym górnym rogu ustawień Android Auto otwórz menu <kbd>⋮</kbd> i wybierz <strong>Uruchom serwer jednostki centralnej</strong>. Na części telefonów opcja ta nazywa się <strong>Włącz serwer radioodtwarzacza</strong>. Na górnej belce Androida pojawi się powiadomienie o działającym serwerze.</li>
+          <li><strong>Wróć do MICROBike.</strong> Aplikacja wykryje działający serwer i połączy się automatycznie (kropka statusu w nagłówku zmieni kolor na cyjanowy, a w karcie pojawi się podgląd mapy na żywo). Jeśli wcześniej zatrzymałeś projekcję ręcznie, dotknij <kbd>START</kbd>.</li>
+        </ol>
+
+        <div class="shot-grid">
+          <!-- ZRZUT EKRANU: manual/images/03-aa-przycisk-set.png -->
+          <figure class="shot">
+            <img src="images/03-aa-przycisk-set.png"
+                 alt="Karta Strumień nawigacji w MICROBike z zaznaczonym przyciskiem SET"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 03</span>
+              <code class="shot-file">images/03-aa-przycisk-set.png</code>
+              <span class="shot-desc">Karta „STRUMIEŃ NAWIGACJI” z komunikatem o uruchomieniu serwera i przyciskiem SET na dole.</span>
+            </div>
+            <figcaption><strong>Krok 2.1.</strong> Dotknij <kbd>SET</kbd> w karcie Strumień nawigacji.</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/04-aa-ustawienia-wersja.png -->
+          <figure class="shot">
+            <img src="images/04-aa-ustawienia-wersja.png"
+                 alt="Ustawienia Android Auto przewinięte na dół z zaznaczoną pozycją Wersja"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 04</span>
+              <code class="shot-file">images/04-aa-ustawienia-wersja.png</code>
+              <span class="shot-desc">Dół ustawień Android Auto — zaznaczona pozycja „Wersja” (stuknij 10 razy).</span>
+            </div>
+            <figcaption><strong>Krok 2.2.</strong> Przewiń na dół i stuknij <strong>Wersja</strong> 10 razy.</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/05-aa-tryb-programisty.png -->
+          <figure class="shot">
+            <img src="images/05-aa-tryb-programisty.png"
+                 alt="Okno potwierdzenia włączenia ustawień programisty w Android Auto"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 05</span>
+              <code class="shot-file">images/05-aa-tryb-programisty.png</code>
+              <span class="shot-desc">Dialog Android Auto „Zezwolić na ustawienia programisty?” z przyciskiem OK.</span>
+            </div>
+            <figcaption><strong>Krok 2.3.</strong> Potwierdź włączenie trybu programisty (OK).</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/06-aa-uruchom-serwer.png -->
+          <figure class="shot">
+            <img src="images/06-aa-uruchom-serwer.png"
+                 alt="Menu trzy kropki w Android Auto z opcją Uruchom serwer jednostki centralnej"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 06</span>
+              <code class="shot-file">images/06-aa-uruchom-serwer.png</code>
+              <span class="shot-desc">Rozwinięte menu ⋮ w prawym górnym rogu Android Auto z zaznaczoną opcją „Uruchom serwer jednostki centralnej”.</span>
+            </div>
+            <figcaption><strong>Krok 2.4.</strong> W menu <kbd>⋮</kbd> wybierz <strong>Uruchom serwer jednostki centralnej</strong>.</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/07-aa-podglad-live.png -->
+          <figure class="shot">
+            <img src="images/07-aa-podglad-live.png"
+                 alt="Działający podgląd na żywo Android Auto w MICROBike"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 07</span>
+              <code class="shot-file">images/07-aa-podglad-live.png</code>
+              <span class="shot-desc">Powrót do MICROBike: widoczna mapa w karcie STRUMIEŃ NAWIGACJI i zielona/cyjanowa kontrolka połączenia.</span>
+            </div>
+            <figcaption><strong>Krok 2.5.</strong> Po powrocie do MICROBike podgląd mapy uruchamia się automatycznie.</figcaption>
+          </figure>
+        </div>
+
+        <p class="tip"><strong>Wskazówka:</strong> serwer Android Auto działa wyłącznie lokalnie wewnątrz telefonu (<code>127.0.0.1</code>) i nie wymaga podłączania kabla USB ani internetu do samego przesyłu obrazu.</p>
+        <p class="support-link"><a href="https://developer.android.com/training/cars/testing/dhu#running-dhu">Oficjalna dokumentacja Google o serwerze jednostki centralnej Android Auto</a></p>
+      </section>
+
+      <section id="cluster-connect">
+        <h2>3. Sparowanie i połączenie z licznikiem Yamaha</h2>
+        <ol class="steps">
+          <li><strong>Sparuj skuter w systemie Android.</strong> Włącz zapłon skutera oraz Bluetooth w telefonie. W systemowych ustawieniach Bluetooth telefonu sparuj moduł licznika o nazwie zaczynającej się od <strong>YCCU</strong>.</li>
+          <li><strong>Zamknij konkurencyjne aplikacje.</strong> Zamknij aplikację <strong>StreetCross</strong> (oraz <strong>Yamaha MyRide</strong>, jeśli korzystasz także z pomiaru akumulatora), ponieważ licznik obsługuje jedno aktywne połączenie nawigacyjne naraz.</li>
+          <li><strong>Dodaj pojazd w MICROBike.</strong> Przejdź do karty <strong>MOTO CONNECT</strong> i dotknij <kbd>+ Dodaj pojazd</kbd>. Telefon wyszuka pobliskie urządzenia YCCU (skanowanie trwa do 15 sekund).</li>
+          <li><strong>Wybierz wykryty YCCU.</strong> Po wyborze pojazd zapisze się na liście (możesz zapisać do 3 pojazdów), a MICROBike połączy się z licznikiem.</li>
+          <li><strong>Sprawdź ekran licznika.</strong> Po uwierzytelnieniu na TFT pojawi się plansza powitalna MICROBike, a po uruchomieniu serwera Android Auto — obraz nawigacji.</li>
+        </ol>
+
+        <div class="shot-grid shot-grid--2">
+          <!-- ZRZUT EKRANU: manual/images/08-bluetooth-parowanie-yccu.png -->
+          <figure class="shot">
+            <img src="images/08-bluetooth-parowanie-yccu.png"
+                 alt="Sparowany moduł YCCU w ustawieniach Bluetooth Androida"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 08</span>
+              <code class="shot-file">images/08-bluetooth-parowanie-yccu.png</code>
+              <span class="shot-desc">Systemowe ustawienia Bluetooth telefonu z widocznym sparowanym urządzeniem „YCCU...”.</span>
+            </div>
+            <figcaption><strong>Krok 3.1.</strong> Moduł <strong>YCCU</strong> sparowany w ustawieniach Bluetooth telefonu.</figcaption>
+          </figure>
+
+          <!-- ZRZUT EKRANU: manual/images/09-moto-connect-polaczono.png -->
+          <figure class="shot">
+            <img src="images/09-moto-connect-polaczono.png"
+                 alt="Karta Moto Connect w MICROBike z połączonym pojazdem YCCU"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Zrzut ekranu 09</span>
+              <code class="shot-file">images/09-moto-connect-polaczono.png</code>
+              <span class="shot-desc">Karta „MOTO CONNECT” z zapisanym pojazdem YCCU i zielonym statusem „Połączono”.</span>
+            </div>
+            <figcaption><strong>Krok 3.4.</strong> Połączony pojazd na liście w karcie <strong>MOTO CONNECT</strong>.</figcaption>
+          </figure>
+        </div>
+
+        <p class="tip"><strong>Gotowe do jazdy!</strong> Przed pierwszą trasą warto jeszcze na postoju dotknąć na podglądzie wybranej aplikacji nawigacyjnej (np. Google Maps, Waze, Yanosik), sprawdzić działanie przycisku <kbd>WYŚRODKUJ</kbd> oraz — jeśli chcesz łączyć się bez sięgania po telefon — włączyć <strong>Autostart po włączeniu zapłonu</strong>.</p>
+      </section>
+
+      <p class="part-heading">Część 2 · Szczegółowy opis wszystkich funkcji</p>
+
+      <section id="stream-calibration">
+        <h2>Strumień nawigacji i kalibracja dotyku</h2>
+        <p>Karta <strong>STRUMIEŃ NAWIGACJI</strong> (<code>PODGLĄD NA ŻYWO · 1280 × 720</code>) wyświetla pełny interfejs Android Auto z pełną obsługą dotyku. W nagłówku całej aplikacji dwie kontrolki pokazują bieżący stan połączeń: <strong>kropka</strong> odpowiada za Android Auto, a <strong>ikona Bluetooth</strong> za licznik Yamaha (cyjan = połączono, bursztyn = łączenie/ponawianie, czerwień = błąd, szary = rozłączono).</p>
+
+        <h3>Przyciski pod podglądem</h3>
+        <dl class="controls">
+          <dt>Pełny ekran</dt>
+          <dd>Otwiera podgląd Android Auto na całym ekranie telefonu (z obsługą dotyku i obrotu ekranu bez przerywania strumienia). Wyjście przyciskiem <strong>Zamknij pełny ekran</strong>.</dd>
+          <dt><kbd>↑</kbd> oraz <kbd>↓</kbd></dt>
+          <dd>Wirtualne przyciski kierownicy — obsługują dokładnie te same pojedyncze, podwójne i potrójne kliknięcia oraz tryby OSD, co fizyczne strzałki na skuterze. Idealne do przetestowania konfiguracji na postoju.</dd>
+          <dt><kbd>BACK</kbd></dt>
+          <dd>Wysyła polecenie <em>Wstecz</em>, a po chwili dotyka zapisany punkt <strong>Wyśrodkuj</strong>, aby wrócić do śledzenia pozycji na mapie.</dd>
+          <dt><kbd>MAPA</kbd></dt>
+          <dd>Natychmiast przywołuje widok aplikacji nawigacyjnej w Android Auto (przydatne np. po zakończonej rozmowie lub wyjściu do odtwarzacza).</dd>
+          <dt>Mikrofon</dt>
+          <dd>Uruchamia asystenta głosowego Android Auto.</dd>
+          <dt><kbd>WYŚRODKUJ</kbd></dt>
+          <dd>Wykonuje dotknięcie w zapisanym punkcie wyśrodkowania/kompasu mapy.</dd>
+          <dt><kbd>Ustaw punkt Wyśrodkuj</kbd></dt>
+          <dd>Włącza jednorazowy tryb kalibracji: po jego dotknięciu wskaż palcem na podglądzie Android Auto przycisk wyśrodkowania (kompasu / „Wyśrodkuj”) w Twojej aplikacji mapowej. Punkt zapisze się automatycznie. Kalibrację warto powtórzyć po zmianie aplikacji nawigacyjnej lub gęstości <strong>DPI</strong>.</dd>
+          <dt><kbd>START</kbd> / <kbd>STOP</kbd> / <kbd>SET</kbd></dt>
+          <dd><strong>START</strong> wznawia połączenie z serwerem AA, <strong>STOP</strong> ręcznie zatrzymuje projekcję, a <strong>SET</strong> otwiera systemowe ustawienia Android Auto. Jeśli działająca sesja Android Auto przerwie się samoistnie, MICROBike automatycznie podejmie do 3 prób odzyskania obrazu (ręczne <kbd>STOP</kbd> anuluje automatyczne wznawianie).</dd>
+        </dl>
+
+        <!-- ZRZUT EKRANU: manual/images/10-kalibracja-wysrodkuj.png -->
+        <figure class="shot">
+          <img src="images/10-kalibracja-wysrodkuj.png"
+               alt="Karta Strumień nawigacji z przyciskami sterowania oraz kalibracją punktu Wyśrodkuj"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Zrzut ekranu 10</span>
+            <code class="shot-file">images/10-kalibracja-wysrodkuj.png</code>
+            <span class="shot-desc">Karta „STRUMIEŃ NAWIGACJI” z widocznym rzędem przycisków (Pełny ekran, ↑, ↓, BACK, MAPA, Mikrofon) oraz przyciskami WYŚRODKUJ i „Ustaw punkt Wyśrodkuj”.</span>
+          </div>
+          <figcaption>Panel sterowania pod podglądem oraz kalibracja punktu <strong>Wyśrodkuj</strong>.</figcaption>
+        </figure>
+      </section>
+
+      <section id="cluster-display">
+        <h2>Podgląd licznika i co widać na ekranie TFT Yamaha</h2>
+        <p>Karta <strong>PODGLĄD LICZNIKA</strong> pokazuje dokładnie taki kadr, jaki jest wysyłany do wyświetlacza skutera Yamaha NMAX. Dotknięcie podglądu otwiera go na pełnym ekranie telefonu.</p>
+
+        <dl class="features">
+          <dt>Plansza oczekiwania MICROBike</dt>
+          <dd>Gdy licznik jest już połączony i uwierzytelniony, ale Android Auto nie dostarcza jeszcze obrazu (lub projekcja jest zatrzymana), na wyświetlaczu TFT wyświetlana jest plansza powitalna MICROBike ze statusem połączenia. Znika automatycznie z chwilą nadejścia pierwszej klatki mapy.</dd>
+
+          <dt>Lewy pasek telemetrii (zasilanie)</dt>
+          <dd>W lewym marginesie obrazu wyświetlane są dwa wskaźniki po obu stronach fabrycznych strzałek licznika:
+            <ul>
+              <li><strong>U góry — napięcie akumulatora skutera (AKU)</strong>, np. <code>14.1V</code> (lub białe <code>--.-V</code> przy braku świeżego odczytu).</li>
+              <li><strong>U dołu — poziom baterii telefonu</strong>, np. <code>82%</code> (kolor zielony przy normalnym poziomie; w trakcie ładowania obok pojawia się żółty symbol pioruna; białe <code>--%</code> oznacza brak odczytu).</li>
+              <li>Po spadku poniżej ustawionego progu wskaźnik zmienia kolor ostrzegawczy, a w sytuacji krytycznej <strong>miga na czerwono co 0,5 s</strong> (szczegóły w sekcji <a href="#battery-alerts">Akumulator i alarmy</a>).</li>
+            </ul>
+          </dd>
+
+          <dt>Kontekstowa karta OSD (prawy górny róg)</dt>
+          <dd>Gdy przełączysz tryb kierownicy na <strong>MEDIA</strong>, <strong>MENU</strong> lub gdy nadejdzie połączenie (<strong>TELEFON</strong>), w prawym górnym rogu mapy pojawia się kompaktowa karta podpowiadająca aktualną funkcję przycisków <kbd>↑</kbd> i <kbd>↓</kbd>. Podczas aktywnej rozmowy karta pokazuje też rzeczywisty stan mikrofonu z systemu Android: cyjanowe <strong>MIC</strong> (włączony), czerwony przekreślony mikrofon (wyciszony) lub szare <strong>MIC ?</strong> (brak potwierdzenia z systemu). Po wykonaniu pojedynczej akcji na mapie pod kartą pojawia się krótkie, 2-sekundowe potwierdzenie.</dd>
+
+          <dt>Dolny pasek statusu licznika</dt>
+          <dd>Zastępuje fabryczny napis pod mapą kontekstową informacją (automatycznie dopasowywaną do limitu długości pola na liczniku):
+            <ul>
+              <li><strong>Tryb MAPA i MENU:</strong> czas aktywnej jazdy (<code>Czas:</code> dla prędkości &gt;2 km/h) oraz średnia prędkość (<code>V avg:</code>). Gdy GPS telefonu jest wyłączony, dolny pasek pozostaje pusty.</li>
+              <li><strong>Tryb MEDIA:</strong> status odtwarzania <code>[PLAY]</code> lub <code>[PAUSE]</code> oraz tytuł aktualnego utworu (wymaga dostępu do powiadomień).</li>
+              <li><strong>Tryb TELEFON:</strong> nazwa lub numer rozmówcy i czas trwania aktywnej rozmowy, albo komunikat o połączeniu przychodzącym.</li>
+              <li><strong>Alarm braku ładowania (najwyższy priorytet):</strong> przy prędkości GPS &gt;30 km/h i napięciu AKU &lt;13,8 V dolny pasek zamiast statystyk wyświetla ostrzeżenie <strong><code>! BRAK ŁADOWANIA.</code></strong> wraz z bieżącym napięciem.</li>
+            </ul>
+          </dd>
+        </dl>
+
+        <!-- ZRZUT EKRANU: manual/images/11-podglad-licznika-tft.png -->
+        <figure class="shot">
+          <img src="images/11-podglad-licznika-tft.png"
+               alt="Podgląd obrazu wysyłanego na licznik Yamaha NMAX z telemetrią i OSD"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Zrzut ekranu 11</span>
+            <code class="shot-file">images/11-podglad-licznika-tft.png</code>
+            <span class="shot-desc">Karta „PODGLĄD LICZNIKA” (lub zdjęcie ekranu TFT Yamaha NMAX) z mapą, lewym paskiem AKU / baterii telefonu, kartą OSD w prawym górnym rogu i dolnym paskiem statystyk.</span>
+          </div>
+          <figcaption>Kadr wysyłany na licznik Yamaha NMAX: mapa, boczny pasek zasilania, karta OSD oraz dolny pasek statusu.</figcaption>
+        </figure>
+      </section>
+
+      <section id="handlebar-osd">
+        <h2>Sterowanie z kierownicy i tryby OSD</h2>
+        <p>Fizyczne przyciski <kbd>↑</kbd> i <kbd>↓</kbd> na kierownicy (oraz wirtualne strzałki w aplikacji) korzystają z systemu gestów (pojedyncze, podwójne i potrójne kliknięcie w oknie <strong>650 ms</strong>) oraz czterech trybów kontekstowych.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tryb OSD</th>
+                <th><kbd>↑</kbd> (1×)</th>
+                <th><kbd>↓</kbd> (1×)</th>
+                <th>Automatyczny powrót</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MAPA</strong> (domyślny)</td>
+                <td>Domyślnie: <strong>Cykl zoomu</strong> (+ / − / wyśrodkuj)*</td>
+                <td>Domyślnie: <strong>Back + Center</strong> (Wstecz i wyśrodkuj)*</td>
+                <td>Tryb podstawowy</td>
+              </tr>
+              <tr>
+                <td><strong>MEDIA</strong></td>
+                <td>Następny utwór</td>
+                <td>Odtwarzaj / Pauza</td>
+                <td>Po <strong>20 s</strong> bezczynności → MAPA</td>
+              </tr>
+              <tr>
+                <td><strong>MENU</strong> (Pulpit AA)</td>
+                <td>Następny element (rotary +1)</td>
+                <td>Wybierz element (SELECT)</td>
+                <td>Po <strong>60 s</strong> bezczynności lub po ruszeniu → MAPA</td>
+              </tr>
+              <tr>
+                <td><strong>TELEFON</strong> (przychodzące)</td>
+                <td><strong>Odbierz</strong> połączenie</td>
+                <td><strong>Odrzuć</strong> połączenie</td>
+                <td>Po zakończeniu / odrzuceniu → MAPA</td>
+              </tr>
+              <tr>
+                <td><strong>TELEFON</strong> (aktywna rozmowa)</td>
+                <td><strong>Wycisz / odciszenie mikrofonu</strong> (MUTE)</td>
+                <td><strong>Zakończ</strong> rozmowę</td>
+                <td>Po rozłączeniu → MAPA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><small>* W trybie <strong>MAPA</strong> funkcje pojedynczych kliknięć <kbd>↑ 1×</kbd> i <kbd>↓ 1×</kbd> możesz dowolnie zmienić w ustawieniach.</small></p>
+
+        <h3>Gesty globalne (działają w każdym trybie)</h3>
+        <dl class="controls">
+          <dt><kbd>↑</kbd> dwa razy (2×)</dt>
+          <dd>Przełącza kolejny tryb sterowania w pętli: <strong>MAPA → MEDIA → MENU → TELEFON</strong> (tryb TELEFON pojawia się w pętli tylko podczas trwającej rozmowy).</dd>
+          <dt><kbd>↓</kbd> dwa razy (2×)</dt>
+          <dd>Uruchamia <strong>Asystenta głosowego (Voice)</strong> w Android Auto.</dd>
+          <dt><kbd>↑</kbd> lub <kbd>↓</kbd> trzy razy (3×)</dt>
+          <dd>Domyślnie wyłączone (<em>Brak akcji</em>). Możesz przypisać im własne globalne akcje w ustawieniach. Uwaga: przypisanie akcji do gestu 3× wprowadza dodatkowe opóźnienie ok. 650 ms dla gestu 2× na tym samym przycisku, ponieważ aplikacja czeka na ewentualne trzecie kliknięcie.</dd>
+        </dl>
+
+        <h3>Jak działają wybrane funkcje sterowania</h3>
+        <ul>
+          <li><strong>Cykl zoomu (+ / − / wyśrodkuj):</strong> kolejne naciśnięcia przybliżają mapę, oddalają ją, a trzecie naciśnięcie cofa i wyśrodkowuje widok. Po 10 sekundach przerwy cykl wraca na początek.</li>
+          <li><strong>Tryb MENU (tylko na postoju):</strong> ze względów bezpieczeństwa tryb MENU jest dostępny wyłącznie wtedy, gdy <strong>GPS telefonu jest włączony i potwierdza 0 km/h</strong>. Wejście do MENU otwiera ekran główny Android Auto (Home), a wyjście (lub ruszenie z miejsca, brak świeżego sygnału GPS albo wyłączenie GPS) automatycznie wraca do widoku mapy.</li>
+          <li><strong>Personalizacja (sekcja „5. Przyciski kierownicy”):</strong> możesz przypisać m.in. Zoom In, Zoom Out, Cykl zoomu, Back, Center, Back + Center, Mapa, Home AA, Select, Następny/Poprzedni element, Następny obszar, Telefon AA, Call, EndCall, Mute, Media AA, Play/Pause, Następny utwór, Pauza, Stop lub Brak akcji. Przycisk <kbd>Przywróć przyciski domyślne</kbd> cofa zmiany.</li>
+        </ul>
+
+        <!-- ZRZUT EKRANU: manual/images/12-przyciski-kierownicy.png -->
+        <figure class="shot">
+          <img src="images/12-przyciski-kierownicy.png"
+               alt="Sekcja 5. Przyciski kierownicy w ustawieniach MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Zrzut ekranu 12</span>
+            <code class="shot-file">images/12-przyciski-kierownicy.png</code>
+            <span class="shot-desc">Sekcja „5. Przyciski kierownicy” z listą gestów UP/DOWN 1×, 2×, 3× i przyciskiem „Przywróć przyciski domyślne”.</span>
+          </div>
+          <figcaption>Konfiguracja gestów w sekcji <strong>5. Przyciski kierownicy</strong>.</figcaption>
+        </figure>
+      </section>
+
+      <section id="moto-connect">
+        <h2>Moto Connect i Autostart po włączeniu zapłonu</h2>
+        <h3>Moto Connect (zapisane pojazdy)</h3>
+        <p>Karta <strong>MOTO CONNECT</strong> zarządza połączeniem Bluetooth z licznikiem Yamaha:</p>
+        <ul>
+          <li>Możesz zapisać do <strong>3 pojazdów YCCU</strong> i łączyć się z wybranym pojazdem jednym dotknięciem.</li>
+          <li>Przycisk <kbd>X</kbd> przy pojeździe usuwa go z listy MICROBike — samo parowanie Bluetooth w ustawieniach systemu Android pozostaje zachowane.</li>
+          <li>Przycisk <kbd>Rozłącz</kbd> kończy aktywne połączenie z licznikiem (a także wyłącza aktywny Autostart).</li>
+        </ul>
+
+        <h3>Autostart po włączeniu zapłonu</h3>
+        <p>Karta <strong>Autostart po włączeniu zapłonu</strong> pozwala uruchomić czuwanie w tle, aby MICROBike samo łączyło się z wybranym zapisanym skuterem po przekręceniu kluczyka.</p>
+        <ul>
+          <li><strong>Domyślnie wyłączony:</strong> włączasz go świadomie przełącznikiem po wybraniu zapisanego pojazdu.</li>
+          <li><strong>Jak działa czuwanie:</strong> usługa działa w tle z powiadomieniem systemowym i próbuje nawiązać połączenie co ok. 30 s (czas próby maks. 8 s). Zdarzenia Bluetooth telefonu (np. włączenie radia BT lub pojawienie się sparowanego YCCU) przyspieszają kolejną próbę.</li>
+          <li><strong>Po restarcie telefonu:</strong> po ponownym uruchomieniu telefonu (i pierwszym odblokowaniu ekranu) czuwanie wznawia się automatycznie, o ile systemowe ograniczenia baterii na to pozwalają. Jeśli czuwanie zostało zatrzymane, możesz użyć przycisku <kbd>Wznów czuwanie</kbd>.</li>
+          <li><strong>Warunek dla obrazu w tle:</strong> Autostart wznawia połączenie Bluetooth z licznikiem, ale <strong>serwer jednostki centralnej Android Auto na telefonie musi już działać</strong>. Projekcja w tle uruchamia się dopiero po uwierzytelnieniu licznika YCCU.</li>
+        </ul>
+        <p class="callout"><strong>Ważne:</strong> ręczne dotknięcie <kbd>Rozłącz</kbd> wyłącza Autostart. Przed uruchomieniem aplikacji <strong>Yamaha MyRide</strong> lub <strong>StreetCross</strong> wyłącz Autostart, aby aplikacje nie walczyły o połączenie z modułem YCCU.</p>
+
+        <!-- ZRZUT EKRANU: manual/images/13-autostart-po-zaplonie.png -->
+        <figure class="shot">
+          <img src="images/13-autostart-po-zaplonie.png"
+               alt="Karta Autostart po włączeniu zapłonu w MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Zrzut ekranu 13</span>
+            <code class="shot-file">images/13-autostart-po-zaplonie.png</code>
+            <span class="shot-desc">Karta „Autostart po włączeniu zapłonu” z włączonym przełącznikiem i wybranym pojazdem YCCU.</span>
+          </div>
+          <figcaption>Konfiguracja automatycznego łączenia z zapisanym skuterem po włączeniu zapłonu.</figcaption>
+        </figure>
+      </section>
+
+      <section id="display-settings">
+        <h2>Ustawienia obrazu, aplikacji mapowej, motywu i DPI</h2>
+        <p>Karta <strong>USTAWIENIA</strong> skupia konfigurację wyglądu mapy oraz zachowania aplikacji nawigacyjnych.</p>
+
+        <dl class="features">
+          <dt>1. Tryb obrazu na skuterze</dt>
+          <dd>
+            <ul>
+              <li><strong>Bez menu</strong> (domyślny) — usuwa lewy pasek aplikacji Android Auto, dzięki czemu sama mapa zajmuje maksymalną dostępną powierzchnię ekranu TFT.</li>
+              <li><strong>Pełny ekran</strong> — przesyła na licznik cały widok Android Auto razem z lewym paskiem aplikacji, zachowując jego proporcje.</li>
+            </ul>
+          </dd>
+
+          <dt>2. Mapa na skuterze i telefonie</dt>
+          <dd>Aplikację mapy wyświetlaną na skuterze wybierasz bezpośrednio w menu Android Auto na podglądzie strumienia. Opcjonalny przełącznik <strong>Uruchamiaj mapę także na telefonie</strong> pozwala automatycznie otworzyć wybraną nawigację na ekranie telefonu po połączeniu z Android Auto. Lista <kbd>Wybierz</kbd> wykrywa zainstalowane aplikacje spośród: <strong>Google Maps, Yanosik, Waze, Organic Maps, OsmAnd oraz OsmAnd+</strong> (możesz też otworzyć wybraną mapę ręcznie przyciskiem <kbd>Otwórz mapę</kbd>). Ten wybór nie zmienia mapy aktywnej w Android Auto.</dd>
+
+          <dt>3. Jasność (motyw dzień / noc mapy)</dt>
+          <dd>
+            <ul>
+              <li><strong>Jasny</strong> — wymusza dzienny motyw mapy w Android Auto.</li>
+              <li><strong>Ciemny</strong> — wymusza nocny motyw mapy.</li>
+              <li><strong>Auto</strong> — wylicza lokalnie świt i zmierzch cywilny na podstawie ostatniej pozycji GPS i zegara telefonu, przeliczając stan od razu oraz co 10 minut (bez połączenia z internetem). Wymaga zgody na <strong>dokładną lokalizację</strong>; jeśli pozycja GPS nie jest jeszcze znana, aplikacja zgłasza tryb dzienny.</li>
+            </ul>
+          </dd>
+
+          <dt>4. Gęstość obrazu (DPI)</dt>
+          <dd>Suwak pozwala wybrać gęstość <strong>120, 140, 160 (domyślne) lub 180 DPI</strong>. Wyższa wartość powiększa czcionki, ikony i przyciski interfejsu Android Auto; niższa pokazuje szerszy fragment mapy. Po puszczeniu suwaka Android Auto na chwilę ponownie zestawia strumień, aby dopasować układ. Po zmianie DPI sprawdź, czy punkt <strong>Wyśrodkuj</strong> nadal trafia we właściwy przycisk.</dd>
+        </dl>
+
+        <!-- ZRZUT EKRANU: manual/images/14-ustawienia-obrazu-dpi.png -->
+        <figure class="shot">
+          <img src="images/14-ustawienia-obrazu-dpi.png"
+               alt="Ustawienia obrazu: Tryb obrazu, Jasność i Gęstość obrazu DPI"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Zrzut ekranu 14</span>
+            <code class="shot-file">images/14-ustawienia-obrazu-dpi.png</code>
+            <span class="shot-desc">Karta „USTAWIENIA”: przełączniki Bez menu / Pełny ekran, Jasność (Jasny / Ciemny / Auto) oraz suwak Gęstość obrazu DPI (120–180).</span>
+          </div>
+          <figcaption>Dobór trybu obrazu, motywu dzień/noc oraz gęstości <strong>DPI</strong>.</figcaption>
+        </figure>
+      </section>
+
+      <section id="saved-places">
+        <h2>Dom, Praca, Ulubione i udostępnianie z Map Google</h2>
+        <p>MICROBike integruje wbudowane menu nawigacyjne licznika Yamaha z aplikacją <strong>Google Maps</strong> na telefonie. Wszystkie zapisane adresy przechowywane są wyłącznie lokalnie na Twoim telefonie.</p>
+
+        <h3>Szybkie zapisywanie miejsc prosto z Google Maps</h3>
+        <ol class="steps">
+          <li>Otwórz wybrane miejsce lub pinezkę w aplikacji <strong>Google Maps</strong>.</li>
+          <li>Dotknij <strong>Udostępnij</strong> i wybierz z listy aplikację <strong>MICROBike</strong>.</li>
+          <li>Na ekranie <strong>MIEJSCE Z GOOGLE MAPS</strong> możesz poprawić nazwę lub adres, a następnie wybrać: <strong>Zapisz jako Dom</strong>, <strong>Zapisz jako Praca</strong>, <strong>Dodaj do Ulubionych</strong> (do 5 miejsc) albo od razu <strong>Nawiguj do tego miejsca</strong>.</li>
+        </ol>
+
+        <!-- ZRZUT EKRANU: manual/images/15-google-maps-udostepnij.png -->
+        <figure class="shot">
+          <img src="images/15-google-maps-udostepnij.png"
+               alt="Ekran udostępnionego miejsca z Google Maps w MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Zrzut ekranu 15</span>
+            <code class="shot-file">images/15-google-maps-udostepnij.png</code>
+            <span class="shot-desc">Ekran „MIEJSCE Z GOOGLE MAPS” po użyciu Udostępnij → MICROBike (przyciski Zapisz jako Dom, Praca, Ulubione, Nawiguj).</span>
+          </div>
+          <figcaption>Zapisywanie celu z Google Maps bezpośrednio do Domu, Pracy lub Ulubionych.</figcaption>
+        </figure>
+
+        <h3>Obsługa z aplikacji i z menu licznika Yamaha</h3>
+        <ul>
+          <li><strong>Dom i Praca:</strong> adresy możesz wpisać ręcznie w sekcji <em>Dom i Praca — Google Maps</em> i przetestować przyciskami <kbd>Jedź do Domu</kbd> / <kbd>Jedź do Pracy</kbd>. Te same cele uruchamiają odpowiednie pozycje w menu licznika Yamaha.</li>
+          <li><strong>Ulubione miejsca (maks. 5):</strong> wpisuj nazwę oraz adres/zapytanie (przycisk <kbd>Dodaj ulubione miejsce</kbd>). Kompletne wpisy są przekazywane na listę <strong>Ulubione</strong> w menu licznika (dystans i kierunek nie są wyliczane na samej liście licznika).</li>
+          <li><strong>Najbliższa stacja paliw:</strong> dostępna zarówno w aplikacji, jak i na liście stacji w menu licznika — uruchamia wyszukiwanie najbliższych stacji paliw w Google Maps.</li>
+          <li><strong>Zatrzymanie trasy:</strong> wybranie polecenia zakończenia trasy na liczniku wysyła do Google Maps żądanie wyjścia z aktywnej nawigacji.</li>
+        </ul>
+        <p class="tip"><strong>Warto wiedzieć:</strong> aby uruchamiać trasy z menu licznika, gdy MICROBike działa w tle (np. w kieszeni), przyznaj opcjonalną zgodę <strong>Wyświetlanie nad innymi aplikacjami</strong>. Gdy w Google Maps trwa już inna trasa i aplikacja Maps nie pozwala na jej automatyczne zakończenie, MICROBike wyświetli komunikat z prośbą o ręczne zakończenie nawigacji — w przeciwnym razie nowy cel może zostać dodany jako przystanek.</p>
+      </section>
+
+      <section id="gps-stats">
+        <h2>Prędkość GPS i statystyki jazdy</h2>
+        <p>Karta <strong>Prędkość GPS → Android Auto</strong> korzysta wyłącznie z odbiornika GPS telefonu (po nadaniu zgody na dokładną lokalizację uruchamia się domyślnie; ręczne wyłączenie przełącznikiem <kbd>GPS telefonu</kbd> lub z poziomu powiadomienia jest zapamiętywane).</p>
+        <ul>
+          <li><strong>Prędkość dla Android Auto:</strong> świeże pomiary prędkości (nie starsze niż 5 s) trafiają do Android Auto — aplikacje nawigacyjne wykorzystują je m.in. do automatycznego przybliżania i oddalania mapy wraz ze zmianą prędkości. Brak sygnału nie jest zgłaszany jako postój.</li>
+          <li><strong>Statystyki jazdy na dolnym pasku licznika:</strong> MICROBike zlicza <strong>czas jazdy</strong> (gdy prędkość przekracza 2 km/h) oraz <strong>średnią prędkość (V avg)</strong> we wszystkich trybach OSD (również gdy przełączysz się na MEDIA lub rozmawiasz przez telefon). Licznik wyzerujesz przyciskiem <kbd>Wyzeruj statystyki jazdy</kbd>.</li>
+          <li><strong>Bezpieczeństwo trybu MENU i kontrola ładowania:</strong> świeży sygnał GPS umożliwia otwarcie trybu MENU z kierownicy wyłącznie przy <strong>0 km/h</strong> oraz aktywuje wykrywanie braku ładowania akumulatora powyżej <strong>30 km/h</strong>.</li>
+        </ul>
+      </section>
+
+      <section id="battery-alerts">
+        <h2>Akumulator skutera (AKU) i ostrzeżenia zasilania</h2>
+        <p>Karta <strong>AKUMULATOR SKUTERA</strong> odczytuje napięcie instalacji elektrycznej skutera (w woltach) bezpośrednio z modułu CCU przez Bluetooth Low Energy — <strong>bez potrzeby lokalizacji GPS</strong>.</p>
+
+        <ul>
+          <li><strong>Pomiar automatyczny:</strong> po połączeniu i uwierzytelnieniu licznika w Moto Connect MICROBike wykonuje pierwszy odczyt po 2 s, a następnie ponawia go co <strong>30 sekund</strong>. Odczyt jest uznawany za świeży przez 10 minut.</li>
+          <li><strong>Pomiar ręczny:</strong> w każdej chwili przy podłączonym pojeździe możesz kliknąć <kbd>Sprawdź napięcie</kbd>. Wymagany jest włączony zapłon i zamknięcie aplikacji MyRide / StreetCross.</li>
+          <li><strong>Konfiguracja progów ostrzeżeń:</strong> w sekcji <strong>Ostrzeżenia zasilania na liczniku</strong> (na dole karty Ustawienia) ustawisz własne progi:
+            <ul>
+              <li><strong>Próg baterii telefonu:</strong> od 10% do 50% co 10% (domyślnie <strong>20%</strong>, bez ładowania).</li>
+              <li><strong>Próg akumulatora skutera:</strong> od 12,0 V do 12,5 V co 0,1 V (domyślnie <strong>12,4 V</strong>).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Kiedy na liczniku włączają się alarmy krytyczne?</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sytuacja</th>
+                <th>Warunek</th>
+                <th>Reakcja na ekranie TFT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Krytycznie niskie napięcie AKU</strong></td>
+                <td>Napięcie ≤ <strong>11,5 V</strong></td>
+                <td>Wskaźnik AKU na bocznym pasku <span class="badge badge-warn">miga na czerwono</span> (co 0,5 s).</td>
+              </tr>
+              <tr>
+                <td><strong>Brak ładowania podczas jazdy</strong></td>
+                <td>Świeży GPS &gt; <strong>30 km/h</strong> oraz AKU &lt; <strong>13,8 V</strong></td>
+                <td>Wskaźnik AKU <span class="badge badge-warn">miga na czerwono</span>, a dolny pasek wyświetla <strong><code>! BRAK ŁADOWANIA.</code></strong> z napięciem.</td>
+              </tr>
+              <tr>
+                <td><strong>Krytycznie niska bateria telefonu</strong></td>
+                <td>Poziom ≤ <strong>10%</strong> (telefon nie ładuje się)</td>
+                <td>Wskaźnik baterii telefonu <span class="badge badge-warn">miga na czerwono</span> (co 0,5 s).</td>
+              </tr>
+              <tr>
+                <td><strong>Stan normalny / ładowanie</strong></td>
+                <td>Powyżej ustawionych progów</td>
+                <td>Wartości wyświetlane stale; bateria telefonu <span class="badge badge-ok">zielona</span> (z żółtym piorunem podczas ładowania).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ZRZUT EKRANU: manual/images/16-gps-i-akumulator.png -->
+        <figure class="shot">
+          <img src="images/16-gps-i-akumulator.png"
+               alt="Karty Prędkość GPS oraz Akumulator skutera w MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Zrzut ekranu 16</span>
+            <code class="shot-file">images/16-gps-i-akumulator.png</code>
+            <span class="shot-desc">Karty „Prędkość GPS → Android Auto” (z aktualną prędkością i przyciskiem zerowania statystyk) oraz „AKUMULATOR SKUTERA” z odczytem napięcia w V.</span>
+          </div>
+          <figcaption>Podgląd prędkości GPS oraz odczytu napięcia akumulatora skutera.</figcaption>
+        </figure>
+      </section>
+
+      <section id="permissions">
+        <h2>Uprawnienia aplikacji, język i prywatność</h2>
+        <p>Wszystkie zgody możesz sprawdzić lub zmienić w dowolnym momencie w karcie <strong>Uprawnienia aplikacji</strong> (<kbd>Zarządzaj zgodami</kbd>).</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Uprawnienie</th>
+                <th>Do czego służy</th>
+                <th>Co działa bez tej zgody</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Urządzenia w pobliżu</strong></td>
+                <td>Wyszukiwanie i łączenie z licznikiem Yamaha (YCCU), Autostart oraz pomiar napięcia AKU.</td>
+                <td>Podgląd Android Auto nadal działa na ekranie telefonu.</td>
+              </tr>
+              <tr>
+                <td><strong>Dokładna lokalizacja (GPS)</strong></td>
+                <td>Prędkość GPS dla Android Auto, statystyki jazdy, automatyczny motyw dzień/noc (Auto), tryb MENU na postoju, alarm braku ładowania.</td>
+                <td>Projekcja mapy i połączenie z licznikiem działają; motyw jasny/ciemny ustawiasz ręcznie.</td>
+              </tr>
+              <tr>
+                <td><strong>Powiadomienia MICROBike</strong> (Android 13+)</td>
+                <td>Wyświetlanie stałych powiadomień o aktywnym połączeniu BT i GPS wraz z przyciskami zatrzymania.</td>
+                <td>Usługi mogą nadal działać, ale bez widocznych powiadomień na pasku Androida.</td>
+              </tr>
+              <tr>
+                <td><strong>Stan telefonu</strong></td>
+                <td>Dokładniejsze rozpoznawanie dzwonienia i aktywnej rozmowy na liczniku. Nie daje dostępu do kontaktów ani historii połączeń.</td>
+                <td>MICROBike rozpoznaje rozmowy na podstawie systemowego trybu audio telefonu.</td>
+              </tr>
+              <tr>
+                <td><strong>Dostęp do powiadomień (OSD)</strong></td>
+                <td>Wyświetlanie nazwy/numeru rozmówcy, tytułu utworu i stanu odtwarzania na liczniku.</td>
+                <td>Tryby TELEFON i MEDIA nadal działają z ogólnymi etykietami.</td>
+              </tr>
+              <tr>
+                <td><strong>Wyświetlanie nad innymi aplikacjami</strong></td>
+                <td>Uruchamianie tras z menu licznika (Dom, Praca, Ulubione), gdy MICROBike działa w tle.</td>
+                <td>Połączenie z licznikiem i ręczne uruchamianie tras z otwartej aplikacji działają normalnie.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Prywatność i język aplikacji</h3>
+        <ul>
+          <li><strong>Dane pozostają na telefonie:</strong> współrzędne GPS nie są zapisywane, a dane o rozmówcach i odtwarzanych utworach istnieją wyłącznie w pamięci operacyjnej podczas działania aplikacji.</li>
+          <li><strong>Język aplikacji:</strong> MICROBike obsługuje obecnie język <strong>polski</strong> oraz <strong>angielski</strong> (kolejne języki są planowane). Na Androidzie 13 i nowszym możesz wybrać język samej aplikacji w ustawieniach systemowych telefonu (<em>Ustawienia → Aplikacje → MICROBike → Język</em>).</li>
+        </ul>
+      </section>
+
+      <p class="part-heading">Część 3 · Wsparcie</p>
+
+      <section id="troubleshooting">
+        <h2>Gdy coś nie działa</h2>
+
+        <details>
+          <summary>Podgląd Android Auto się nie pojawia lub utknął na łączeniu</summary>
+          <p>Upewnij się, że serwer jednostki centralnej w Android Auto jest uruchomiony (w ustawieniach AA → menu <kbd>⋮</kbd> → <strong>Uruchom serwer jednostki centralnej</strong>). Jeśli był już wcześniej uruchomiony, wybierz w tym samym menu <strong>Zatrzymaj serwer jednostki centralnej</strong>, uruchom go ponownie, wróć do MICROBike i dotknij <kbd>START</kbd>.</p>
+        </details>
+
+        <details>
+          <summary>MICROBike nie znajduje licznika YCCU lub nie może się połączyć</summary>
+          <p>Sprawdź cztery rzeczy: czy włączony jest zapłon skutera, czy moduł <strong>YCCU</strong> jest już sparowany w systemowych ustawieniach Bluetooth telefonu, czy MICROBike ma przyznaną zgodę <strong>Urządzenia w pobliżu</strong> oraz czy aplikacje <strong>StreetCross</strong> i <strong>Yamaha MyRide</strong> są całkowicie zamknięte. Następnie spróbuj ponownie w karcie <strong>MOTO CONNECT</strong>.</p>
+        </details>
+
+        <details>
+          <summary>Projekcja znika po zgaszeniu ekranu (szczególnie Xiaomi / MIUI / HyperOS)</summary>
+          <p>Systemowe oszczędzanie baterii potrafi uśpić serwer Android Auto lub MICROBike wkrótce po zablokowaniu ekranu:</p>
+          <ol class="steps">
+            <li>Otwórz w telefonie <strong>Ustawienia → Aplikacje → Android Auto</strong> (Informacje o aplikacji).</li>
+            <li>Jeśli dostępna jest opcja <strong>Autostart w tle</strong>, włącz ją.</li>
+            <li>Wejdź w <strong>Oszczędzanie baterii / Bateria</strong> i wybierz <strong>Bez ograniczeń</strong>.</li>
+            <li>Jeżeli system zatrzymuje także MICROBike (np. podczas czuwania Autostart), powtórz te same dwa kroki dla aplikacji <strong>MICROBike</strong>.</li>
+          </ol>
+          <p>Dokładne nazwy opcji mogą się nieznacznie różnić w zależności od wersji MIUI, HyperOS lub nakładki producenta (np. Samsung, Huawei, OnePlus).</p>
+          <!-- ZRZUT EKRANU: manual/images/17-xiaomi-bateria.png -->
+          <figure class="shot">
+            <img src="images/17-xiaomi-bateria.png"
+                 alt="Ustawienia baterii Bez ograniczeń i Autostart w tle na telefonie Xiaomi"
+                 loading="lazy">
+            <div class="shot-placeholder shot-placeholder--wide" hidden>
+              <span class="shot-badge">Zrzut ekranu 17</span>
+              <code class="shot-file">images/17-xiaomi-bateria.png</code>
+              <span class="shot-desc">Ustawienia aplikacji Android Auto / MICROBike: włączony „Autostart w tle” oraz bateria ustawiona na „Bez ograniczeń”.</span>
+            </div>
+            <figcaption>Przykładowa konfiguracja baterii na Xiaomi (MIUI / HyperOS).</figcaption>
+          </figure>
+          <p class="support-link"><a href="https://www.mi.com/global/support/faq/details/KA-538010/">Pomoc Xiaomi dotycząca ograniczeń baterii</a></p>
+        </details>
+
+        <details>
+          <summary>Przycisk Wyśrodkuj lub Back + Center trafia obok przycisku na mapie</summary>
+          <p>Każda aplikacja nawigacyjna oraz każda wartość DPI rozmieszcza przycisk wyśrodkowania w innym miejscu. Na postoju otwórz mapę w podglądzie MICROBike, dotknij <kbd>Ustaw punkt Wyśrodkuj</kbd> i wskaż palcem środek ikony kompasu/wyśrodkowania w aktywnym obszarze mapy (poza czarnymi marginesami).</p>
+        </details>
+
+        <details>
+          <summary>Nie mogę przełączyć kierownicy w tryb MENU (Pulpit AA)</summary>
+          <p>Tryb <strong>MENU</strong> jest celowo blokowany w czasie jazdy i wymaga spełnienia trzech warunków naraz: przyznanej <strong>dokładnej lokalizacji</strong>, włączonego przełącznika <strong>GPS telefonu</strong> oraz świeżego odczytu prędkości <strong>0 km/h</strong>. W pomieszczeniu lub garażu bez sygnału GPS tryb MENU nie będzie dostępny.</p>
+        </details>
+
+        <details>
+          <summary>Na liczniku nie widać nazwy rozmówcy ani tytułu utworu</summary>
+          <p>Przejdź do sekcji <strong>Uprawnienia aplikacji → Zarządzaj zgodami</strong> i włącz <strong>Dostęp do powiadomień (OSD)</strong> dla MICROBike, a dla dokładniejszego wykrywania dzwonienia także <strong>Stan telefonu</strong>.</p>
+        </details>
+
+        <details>
+          <summary>Brak odczytu napięcia akumulatora (AKU) lub przekroczony czas</summary>
+          <p>Pomiar wymaga włączonego zapłonu oraz aktywnego pojazdu wybranego w <strong>MOTO CONNECT</strong>. Upewnij się, że <strong>Yamaha MyRide</strong> i <strong>StreetCross</strong> są zamknięte (moduł BLE CCU może być zajęty przez inną aplikację), a następnie dotknij <kbd>Sprawdź napięcie</kbd>.</p>
+        </details>
+
+        <details>
+          <summary>Nowy cel z Domu / Pracy / Ulubionych dodaje się w Google Maps jako przystanek</summary>
+          <p>Jeśli w Google Maps trwa już aktywna nawigacja, a wersja Maps nie pozwala MICROBike zakończyć jej automatycznie, zakończ obecną trasę ręcznie w podglądzie Android Auto lub w aplikacji Maps, a następnie wybierz nowy cel ponownie.</p>
+        </details>
+
+        <details>
+          <summary>Jak zgłosić błąd lub sugestię do dewelopera?</summary>
+          <p>Na samym dole ekranu głównego MICROBike dotknij <strong>Wyślij błąd do dewelopera</strong>. Opisz (do 1500 znaków), co próbujesz zrobić, co dokładnie widzisz i w jakich okolicznościach pojawia się problem — możesz dodać model telefonu i wersję Androida. Formularz wysyła <strong>wyłącznie wpisany tekst</strong> (bez logów i danych pojazdu); nie podawaj w nim danych osobowych ani haseł.</p>
+        </details>
+      </section>
+    </main>
+  </div>
+
+  <footer>MICROBike to niezależny projekt społecznościowy. Yamaha, Google, Android Auto oraz Garmin to znaki towarowe ich właścicieli.</footer>
+  <script>
+    document.querySelectorAll('.shot img').forEach(function (img) {
+      function showPlaceholder() {
+        img.hidden = true;
+        if (img.nextElementSibling) img.nextElementSibling.hidden = false;
+      }
+      img.addEventListener('error', showPlaceholder);
+      if (img.complete && img.naturalWidth === 0) showPlaceholder();
+    });
+    document.querySelectorAll('.lang-switch a[href]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.location.hash && link.getAttribute('href').indexOf('#') === -1) {
+          link.setAttribute('href', link.getAttribute('href') + window.location.hash);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

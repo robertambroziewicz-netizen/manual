@@ -1,103 +1,774 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Instrukcja MICROBike. Pierwsze uruchomienie Android Auto, połączenie z licznikiem Yamaha NMAX i pomoc w razie problemów.">
-  <title>MICROBike · Instrukcja</title>
+  <meta name="description" content="Complete MICROBike user guide: quick start, app permissions, enabling the Android Auto developer head unit server, connecting to a Yamaha NMAX 125 Tech Max instrument cluster and full feature reference.">
+  <title>MICROBike · User Guide</title>
+  <link rel="icon" href="microbike.png" type="image/png">
   <link rel="stylesheet" href="style.css">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="pl" href="pl.html">
+  <link rel="alternate" hreflang="it" href="it.html">
+  <link rel="alternate" hreflang="es" href="es.html">
+  <link rel="alternate" hreflang="fr" href="fr.html">
+  <link rel="alternate" hreflang="x-default" href="index.html">
 </head>
 <body>
-  <a class="skip-link" href="#tresc">Przejdź do instrukcji</a>
+  <!--
+    =========================================================================
+    SHARED SCREENSHOT SLOTS FOR ALL LANGUAGES (folder: manual/images/)
+    Drop your PNG screenshots into manual/images/ using these filenames and
+    every language page will display them automatically without editing HTML:
+
+    QUICK START:
+      images/01-ekran-powitalny.png            — Welcome screen ("Important information before riding")
+      images/02-uprawnienia-kreator.png        — "App permissions" onboarding wizard (Step 1)
+      images/03-aa-przycisk-set.png            — NAVIGATION STREAM card with the SET button
+      images/04-aa-ustawienia-wersja.png       — Android Auto settings scrolled to "Version"
+      images/05-aa-tryb-programisty.png        — Android Auto "Allow development settings?" prompt
+      images/06-aa-uruchom-serwer.png          — Android Auto ⋮ menu -> "Start head unit server"
+      images/07-aa-podglad-live.png            — Active Android Auto live preview in MICROBike
+      images/08-bluetooth-parowanie-yccu.png   — YCCU paired in Android Bluetooth settings
+      images/09-moto-connect-polaczono.png     — MOTO CONNECT card showing "Connected"
+
+    FEATURES & SUPPORT:
+      images/10-kalibracja-wysrodkuj.png       — On-screen controls and "Set the map centre point"
+      images/11-podglad-licznika-tft.png       — Instrument cluster preview (map + side bar + OSD + bottom bar)
+      images/12-przyciski-kierownicy.png       — "5. Handlebar buttons" settings panel
+      images/13-autostart-po-zaplonie.png      — "Auto-start with ignition" card
+      images/14-ustawienia-obrazu-dpi.png      — Display mode, Brightness (Auto/Light/Dark) and DPI slider
+      images/15-google-maps-udostepnij.png     — Share from Google Maps -> MICROBike screen
+      images/16-gps-i-akumulator.png           — "GPS speed" and "SCOOTER BATTERY" cards
+      images/17-xiaomi-bateria.png             — Xiaomi MIUI / HyperOS autostart & No restrictions battery settings
+    =========================================================================
+  -->
+
+  <a class="skip-link" href="#content">Skip to user guide</a>
+
   <header class="hero">
+    <div class="topbar">
+      <nav class="lang-switch" aria-label="Language selection">
+        <a href="index.html" hreflang="en" lang="en" aria-current="page">English</a>
+        <a href="pl.html" hreflang="pl" lang="pl">Polski</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+      </nav>
+    </div>
     <div class="hero-inner">
       <div>
         <p class="brand">MICROBike</p>
-        <h1>Android Auto na liczniku Yamaha NMAX</h1>
-        <p class="intro">Uruchom podgląd na telefonie, połącz licznik przez Bluetooth i wyświetl swoją mapę na skuterze.</p>
-        <a class="button" href="#pierwszy-start">Przejdź do konfiguracji</a>
+        <h1>Android Auto on your Yamaha NMAX display</h1>
+        <p class="intro">Receive Android Auto locally on your phone, project navigation onto the Yamaha NMAX 125 Tech Max TFT cluster, and control maps, music and calls from the handlebar.</p>
+        <div class="hero-actions">
+          <a class="button" href="#quick-start">Quick start (5 minutes)</a>
+          <a class="button-secondary" href="#stream-calibration">Full feature guide</a>
+        </div>
       </div>
-      <img src="microbike.jpg" width="1408" height="768" alt="" fetchpriority="high">
+      <img src="microbike.png" width="640" height="640" alt="MICROBike logo" fetchpriority="high">
     </div>
   </header>
 
   <div class="layout">
-    <nav aria-label="Spis treści">
-      <a href="#pierwszy-start">Pierwsze uruchomienie</a>
-      <a href="#licznik">Połączenie z licznikiem</a>
-      <a href="#sterowanie">Mapa i sterowanie</a>
-      <a href="#funkcje">Funkcje dodatkowe</a>
-      <a href="#pomoc">Gdy coś nie działa</a>
+    <nav class="toc" aria-label="Table of contents">
+      <p class="nav-group">Quick start</p>
+      <a href="#quick-start">1. Requirements &amp; permissions</a>
+      <a href="#aa-server">2. Android Auto server</a>
+      <a href="#cluster-connect">3. Connecting the cluster</a>
+
+      <p class="nav-group">Full feature guide</p>
+      <a href="#stream-calibration">Navigation stream &amp; calibration</a>
+      <a href="#cluster-display">What appears on the TFT display</a>
+      <a href="#handlebar-osd">Handlebar controls &amp; OSD modes</a>
+      <a href="#moto-connect">Moto Connect &amp; Auto-start</a>
+      <a href="#display-settings">Display, maps, theme &amp; DPI</a>
+      <a href="#saved-places">Home, Work &amp; Favourites</a>
+      <a href="#gps-stats">GPS speed &amp; ride statistics</a>
+      <a href="#battery-alerts">Scooter battery &amp; alerts</a>
+      <a href="#permissions">App permissions &amp; privacy</a>
+
+      <p class="nav-group">Support</p>
+      <a href="#troubleshooting">Troubleshooting</a>
     </nav>
 
-    <main id="tresc" tabindex="-1">
-      <section id="pierwszy-start">
-        <h2>Pierwsze uruchomienie</h2>
-        <p>Przygotuj telefon z Androidem 12 lub nowszym, działające Android Auto oraz zainstalowane MICROBike. Instrukcja licznika dotyczy Yamahy NMAX 125 Tech Max 2025/2026 z modułem YCCU/Garmin CCU.</p>
-        <p class="callout">Konfigurację i kalibrację wykonuj na postoju.</p>
+    <main id="content" tabindex="-1">
+      <p class="part-heading">Part 1 · Quick start</p>
+
+      <section id="quick-start">
+        <h2>1. Requirements, first launch and permissions</h2>
+        <p>Before you begin, make sure you have:</p>
+        <ul>
+          <li><strong>An Android phone running Android 12 or newer</strong> (API 31+).</li>
+          <li><strong>Android Auto installed and enabled</strong> (pre-installed on most modern Android devices).</li>
+          <li><strong>MICROBike installed</strong>.</li>
+          <li><strong>A Yamaha NMAX 125 Tech Max (2025/2026)</strong> with the <strong>YCCU / Garmin CCU</strong> instrument cluster. You can also test the Android Auto preview on your phone at home without a scooter or Bluetooth.</li>
+        </ul>
+        <p class="callout"><strong>Safety first:</strong> complete all setup, Bluetooth pairing and map centre calibration while stationary.</p>
+
         <ol class="steps">
-          <li><strong>Otwórz MICROBike.</strong> Po zaakceptowaniu informacji na start przejrzyj ekran <strong>Uprawnienia aplikacji</strong>. Na początek przyznaj dostęp do urządzeń w pobliżu, jeśli chcesz łączyć się z licznikiem. Zgody możesz później zmienić w ustawieniach aplikacji.</li>
-          <li><strong>Otwórz ustawienia Android Auto.</strong> W karcie strumienia nawigacji dotknij <strong>SET</strong>. Na dole ustawień stuknij <strong>Wersja</strong> 10 razy i potwierdź dostęp do trybu deweloperskiego Android Auto.</li>
-          <li><strong>Uruchom serwer.</strong> W menu <strong>⋮</strong> Android Auto wybierz <strong>Uruchom serwer jednostki centralnej</strong>. Na niektórych telefonach opcja nazywa się <strong>Włącz serwer radioodtwarzacza</strong>.</li>
-          <li><strong>Wróć do MICROBike.</strong> Podgląd powinien pojawić się po zestawieniu połączenia. Po ręcznym zatrzymaniu projekcji dotknij <strong>START</strong>, żeby ją wznowić. Podgląd możesz sprawdzić jeszcze przed podłączeniem licznika.</li>
+          <li><strong>Accept the welcome screen.</strong> On first launch, read <strong>Important information before riding</strong> and tap <kbd>I understand and accept</kbd>.</li>
+          <li><strong>Walk through “App permissions”.</strong> MICROBike guides you through each permission one by one. You can allow each permission straight away or tap <kbd>Skip</kbd> and change it later in settings.
+            <ul>
+              <li><strong>Nearby devices</strong> <span class="badge badge-req">for cluster</span> — required to find and connect to YCCU and read the scooter battery voltage.</li>
+              <li><strong>Precise location (GPS)</strong> <span class="badge badge-req">recommended</span> — enables GPS speed for Android Auto, ride statistics, the automatic day/night map theme and stationary <strong>MENU</strong> mode.</li>
+              <li><strong>MICROBike notifications</strong> <span class="badge badge-opt">Android 13+</span> — displays persistent notifications for Bluetooth and GPS services with quick stop buttons.</li>
+              <li><strong>Phone state</strong> and <strong>Notification access (OSD)</strong> <span class="badge badge-opt">optional</span> — show caller details, call duration and the current track title on the instrument cluster.</li>
+              <li><strong>Display over other apps</strong> <span class="badge badge-opt">optional</span> — lets you launch routes from the instrument cluster menu (Home, Work, Favourites) while MICROBike runs in the background.</li>
+            </ul>
+          </li>
         </ol>
-        <p class="support-link"><a href="https://developer.android.com/training/cars/testing/dhu#running-dhu">Dokumentacja Google o serwerze Android Auto</a></p>
+
+        <div class="shot-grid shot-grid--2">
+          <!-- SCREENSHOT: manual/images/01-ekran-powitalny.png -->
+          <figure class="shot">
+            <img src="images/01-ekran-powitalny.png"
+                 alt="MICROBike welcome screen: Important information before riding"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 01</span>
+              <code class="shot-file">images/01-ekran-powitalny.png</code>
+              <span class="shot-desc">Welcome screen “Important information before riding” with “I understand and accept”.</span>
+            </div>
+            <figcaption><strong>Step 1a.</strong> Safety notice on first launch.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/02-uprawnienia-kreator.png -->
+          <figure class="shot">
+            <img src="images/02-uprawnienia-kreator.png"
+                 alt="MICROBike App permissions onboarding wizard"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 02</span>
+              <code class="shot-file">images/02-uprawnienia-kreator.png</code>
+              <span class="shot-desc">“App permissions” setup wizard (Step 1 of 6 — Nearby devices).</span>
+            </div>
+            <figcaption><strong>Step 1b.</strong> Step-by-step permissions wizard — every item can be allowed or skipped.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section id="licznik">
-        <h2>Połączenie z licznikiem</h2>
+      <section id="aa-server">
+        <h2>2. Starting the Android Auto developer server</h2>
+        <p>MICROBike receives video directly from the local head unit server built into Android Auto on your phone. You only need to unlock Android Auto developer mode <strong>once</strong>. Start the head unit server before riding whenever it has been stopped or after a phone reboot.</p>
+
         <ol class="steps">
-          <li>Włącz zapłon i Bluetooth. W systemowych ustawieniach Bluetooth telefonu sparuj moduł licznika o nazwie zaczynającej się od <strong>YCCU</strong>.</li>
-          <li>Zamknij StreetCross lub inną aplikację używającą połączenia z licznikiem.</li>
-          <li>W MICROBike, w sekcji <strong>Moto Connect</strong>, wybierz <strong>Dodaj pojazd</strong> i dotknij wykrytego YCCU. Po połączeniu obraz pojawi się na liczniku, gdy Android Auto przekaże pierwszą klatkę. Zapisany pojazd możesz wybrać przy kolejnym uruchomieniu.</li>
+          <li><strong>Open Android Auto settings from MICROBike.</strong> In the top <strong>NAVIGATION STREAM</strong> card, tap <kbd>SET</kbd>. If Android Auto is not installed yet, tap <kbd>Open Google Play</kbd> first.</li>
+          <li><strong>Enable developer mode (one-time step).</strong> Scroll to the bottom of Android Auto settings and <strong>tap “Version” 10 times</strong> (or “Version and permission info”).</li>
+          <li><strong>Confirm the prompt.</strong> When Android Auto asks <em>“Allow development settings?”</em>, tap <strong>OK</strong>.</li>
+          <li><strong>Start the head unit server.</strong> Tap the <kbd>⋮</kbd> menu in the top-right corner of Android Auto settings and select <strong>Start head unit server</strong>. A notification will confirm that the head unit server is running.</li>
+          <li><strong>Return to MICROBike.</strong> MICROBike automatically detects the server and connects (the header indicator turns cyan and the live map preview appears). If you previously stopped projection manually, tap <kbd>START</kbd>.</li>
         </ol>
-        <p>Jeśli chcesz, włącz <strong>Autostart po włączeniu zapłonu</strong> dla zapisanego pojazdu. Ta opcja wznawia połączenie Bluetooth. Serwer Android Auto na telefonie musi już działać.</p>
+
+        <div class="shot-grid">
+          <!-- SCREENSHOT: manual/images/03-aa-przycisk-set.png -->
+          <figure class="shot">
+            <img src="images/03-aa-przycisk-set.png"
+                 alt="NAVIGATION STREAM card in MICROBike highlighting the SET button"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 03</span>
+              <code class="shot-file">images/03-aa-przycisk-set.png</code>
+              <span class="shot-desc">“NAVIGATION STREAM” card showing the server guide and the SET button at the bottom.</span>
+            </div>
+            <figcaption><strong>Step 2.1.</strong> Tap <kbd>SET</kbd> in the Navigation Stream card.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/04-aa-ustawienia-wersja.png -->
+          <figure class="shot">
+            <img src="images/04-aa-ustawienia-wersja.png"
+                 alt="Bottom of Android Auto settings highlighting Version"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 04</span>
+              <code class="shot-file">images/04-aa-ustawienia-wersja.png</code>
+              <span class="shot-desc">Bottom of Android Auto settings with “Version” highlighted (tap 10 times).</span>
+            </div>
+            <figcaption><strong>Step 2.2.</strong> Scroll to the bottom and tap <strong>Version</strong> 10 times.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/05-aa-tryb-programisty.png -->
+          <figure class="shot">
+            <img src="images/05-aa-tryb-programisty.png"
+                 alt="Android Auto Allow development settings confirmation dialog"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 05</span>
+              <code class="shot-file">images/05-aa-tryb-programisty.png</code>
+              <span class="shot-desc">Android Auto dialog “Allow development settings?” with OK button.</span>
+            </div>
+            <figcaption><strong>Step 2.3.</strong> Confirm developer settings by tapping OK.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/06-aa-uruchom-serwer.png -->
+          <figure class="shot">
+            <img src="images/06-aa-uruchom-serwer.png"
+                 alt="Android Auto three-dots menu showing Start head unit server"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 06</span>
+              <code class="shot-file">images/06-aa-uruchom-serwer.png</code>
+              <span class="shot-desc">Open ⋮ menu in top-right of Android Auto settings highlighting “Start head unit server”.</span>
+            </div>
+            <figcaption><strong>Step 2.4.</strong> Open <kbd>⋮</kbd> and select <strong>Start head unit server</strong>.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/07-aa-podglad-live.png -->
+          <figure class="shot">
+            <img src="images/07-aa-podglad-live.png"
+                 alt="Active Android Auto live preview inside MICROBike"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 07</span>
+              <code class="shot-file">images/07-aa-podglad-live.png</code>
+              <span class="shot-desc">Back in MICROBike: live Android Auto map visible in NAVIGATION STREAM with cyan status dot.</span>
+            </div>
+            <figcaption><strong>Step 2.5.</strong> Return to MICROBike — the live map preview starts automatically.</figcaption>
+          </figure>
+        </div>
+
+        <p class="tip"><strong>Good to know:</strong> the Android Auto server runs strictly locally on your phone (<code>127.0.0.1</code>) — no USB cable is needed.</p>
+        <p class="support-link"><a href="https://developer.android.com/training/cars/testing/dhu#running-dhu">Official Google documentation on the Android Auto head unit server</a></p>
       </section>
 
-      <section id="sterowanie">
-        <h2>Mapa i sterowanie</h2>
-        <p>Wybierz aplikację nawigacji w Android Auto. Obraz i dotyk możesz sprawdzić w podglądzie na telefonie. Jeśli polecenie wyśrodkowania trafia w niewłaściwe miejsce, wybierz <strong>Ustaw punkt Wyśrodkuj</strong> i dotknij właściwego przycisku na podglądzie.</p>
+      <section id="cluster-connect">
+        <h2>3. Pairing and connecting the Yamaha instrument cluster</h2>
+        <ol class="steps">
+          <li><strong>Pair the scooter in Android settings.</strong> Switch on the scooter’s ignition and enable Bluetooth on your phone. In Android’s Bluetooth settings, pair the cluster module whose name starts with <strong>YCCU</strong>.</li>
+          <li><strong>Close competing apps.</strong> Close <strong>StreetCross</strong> (and <strong>Yamaha MyRide</strong> if you also use battery voltage monitoring), as the cluster only allows one active navigation link at a time.</li>
+          <li><strong>Add your vehicle in MICROBike.</strong> Open the <strong>MOTO CONNECT</strong> card and tap <kbd>+ Add vehicle</kbd>. The phone scans for nearby YCCU devices for up to 15 seconds.</li>
+          <li><strong>Select the discovered YCCU.</strong> Your scooter is saved to the list (up to 3 vehicles) and MICROBike connects immediately.</li>
+          <li><strong>Check the TFT cluster.</strong> Once authenticated, the cluster displays the MICROBike waiting screen and switches to live navigation as soon as Android Auto delivers the first frame.</li>
+        </ol>
+
+        <div class="shot-grid shot-grid--2">
+          <!-- SCREENSHOT: manual/images/08-bluetooth-parowanie-yccu.png -->
+          <figure class="shot">
+            <img src="images/08-bluetooth-parowanie-yccu.png"
+                 alt="YCCU module paired in Android Bluetooth settings"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 08</span>
+              <code class="shot-file">images/08-bluetooth-parowanie-yccu.png</code>
+              <span class="shot-desc">Android system Bluetooth settings showing a paired “YCCU...” device.</span>
+            </div>
+            <figcaption><strong>Step 3.1.</strong> Pair the <strong>YCCU</strong> module in Android Bluetooth settings.</figcaption>
+          </figure>
+
+          <!-- SCREENSHOT: manual/images/09-moto-connect-polaczono.png -->
+          <figure class="shot">
+            <img src="images/09-moto-connect-polaczono.png"
+                 alt="MOTO CONNECT card in MICROBike showing a connected YCCU vehicle"
+                 loading="lazy">
+            <div class="shot-placeholder" hidden>
+              <span class="shot-badge">Screenshot 09</span>
+              <code class="shot-file">images/09-moto-connect-polaczono.png</code>
+              <span class="shot-desc">“MOTO CONNECT” card with a saved YCCU vehicle and green “Connected” status.</span>
+            </div>
+            <figcaption><strong>Step 3.4.</strong> Connected vehicle in the <strong>MOTO CONNECT</strong> card.</figcaption>
+          </figure>
+        </div>
+
+        <p class="tip"><strong>Ready to ride!</strong> Before your first trip, select your preferred navigation app inside the Android Auto preview (e.g. Google Maps, Waze, Yanosik), test the <kbd>CENTRE</kbd> button, and optionally enable <strong>Auto-start with ignition</strong>.</p>
+      </section>
+
+      <p class="part-heading">Part 2 · Full feature guide</p>
+
+      <section id="stream-calibration">
+        <h2>Navigation stream and touch calibration</h2>
+        <p>The <strong>NAVIGATION STREAM</strong> card (<code>LIVE PREVIEW · 1280 × 720</code>) displays the interactive Android Auto interface with full touch support. Two indicators in the top header show connection states at a glance: the <strong>dot</strong> represents Android Auto and the <strong>Bluetooth icon</strong> represents the Yamaha cluster (cyan = connected, amber = connecting/retrying, red = error, grey = disconnected).</p>
+
+        <h3>Controls below the preview</h3>
         <dl class="controls">
-          <dt>Dwa razy ↑</dt><dd>Przełącza tryb sterowania. Menu jest dostępne na postoju, gdy GPS telefonu potwierdza 0 km/h.</dd>
-          <dt>Dwa razy ↓</dt><dd>Uruchamia sterowanie głosowe Android Auto.</dd>
-          <dt>Tryb MAPA</dt><dd>Domyślnie pojedyncze ↑ zmienia poziom zbliżenia, a pojedyncze ↓ wykonuje polecenie Wstecz. Przypisania możesz zmienić w ustawieniach.</dd>
-          <dt>Tryb MEDIA</dt><dd>Pojedyncze ↑ przełącza utwór, a pojedyncze ↓ włącza odtwarzanie lub pauzę.</dd>
+          <dt>Full screen</dt>
+          <dd>Expands the interactive Android Auto preview to full screen (supporting touch and screen rotation without dropping the stream). Exit via <strong>Close full-screen view</strong>.</dd>
+          <dt><kbd>↑</kbd> and <kbd>↓</kbd></dt>
+          <dd>Virtual handlebar buttons supporting the exact same single, double and triple presses and OSD modes as the physical scooter buttons. Ideal for testing your setup while parked.</dd>
+          <dt><kbd>BACK</kbd></dt>
+          <dd>Sends the <em>Back</em> key followed shortly by a tap on the saved <strong>Centre</strong> point to return to map tracking.</dd>
+          <dt><kbd>MAP</kbd></dt>
+          <dd>Brings the navigation app back to the foreground in Android Auto (useful after a phone call or media screen).</dd>
+          <dt>Microphone</dt>
+          <dd>Triggers the Android Auto voice assistant.</dd>
+          <dt><kbd>CENTRE</kbd></dt>
+          <dd>Taps the saved map centre / compass coordinates.</dd>
+          <dt><kbd>Set the map centre point</kbd></dt>
+          <dd>Starts one-shot calibration: tap it, then tap the compass / “Re-centre” icon inside the active Android Auto preview. The coordinates are saved automatically. Recalibrate whenever you switch map apps or change <strong>DPI</strong>.</dd>
+          <dt><kbd>START</kbd> / <kbd>STOP</kbd> / <kbd>SET</kbd></dt>
+          <dd><strong>START</strong> reconnects to the Android Auto server, <strong>STOP</strong> manually ends projection, and <strong>SET</strong> opens Android Auto settings. If an active session drops unexpectedly, MICROBike automatically tries up to 3 times to recover the stream (manual <kbd>STOP</kbd> cancels automatic recovery).</dd>
         </dl>
-        <p>Przy drobnym lub zbyt dużym obrazie zmień <strong>gęstość obrazu DPI</strong> w ustawieniach MICROBike. Zmiana może na chwilę przerwać strumień, gdy Android Auto dopasowuje układ.</p>
+
+        <!-- SCREENSHOT: manual/images/10-kalibracja-wysrodkuj.png -->
+        <figure class="shot">
+          <img src="images/10-kalibracja-wysrodkuj.png"
+               alt="NAVIGATION STREAM card with control buttons and Set the map centre point"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Screenshot 10</span>
+            <code class="shot-file">images/10-kalibracja-wysrodkuj.png</code>
+            <span class="shot-desc">“NAVIGATION STREAM” card showing the button row (Full screen, ↑, ↓, BACK, MAP, Mic) plus CENTRE and “Set the map centre point”.</span>
+          </div>
+          <figcaption>On-screen controls and <strong>Centre</strong> point calibration.</figcaption>
+        </figure>
       </section>
 
-      <section id="funkcje">
-        <h2>Funkcje dodatkowe</h2>
+      <section id="cluster-display">
+        <h2>Instrument cluster preview and what appears on the TFT</h2>
+        <p>The <strong>INSTRUMENT CLUSTER PREVIEW</strong> card mirrors the exact frame sent to your Yamaha NMAX TFT screen. Tap the preview to enlarge it to full screen.</p>
+
         <dl class="features">
-          <dt>Dom, Praca i Ulubione</dt><dd>W Mapach Google otwórz miejsce, wybierz <strong>Udostępnij → MICROBike</strong> i zapisz je w wybranej kategorii.</dd>
-          <dt>GPS i tryb dzień/noc</dt><dd>Dokładna lokalizacja umożliwia pomiar prędkości i statystyk jazdy oraz wybór motywu <strong>Auto</strong> według pory dnia. Jasny lub ciemny motyw możesz też wybrać ręcznie.</dd>
-          <dt>Rozmowy i muzyka</dt><dd>Dostęp do powiadomień umożliwia wyświetlanie na liczniku informacji o rozmówcy i utworze. Zgoda na stan telefonu pomaga dokładniej rozpoznawać połączenia.</dd>
-          <dt>Pasek licznika</dt><dd>Z boku widać stan baterii telefonu i napięcie akumulatora skutera. Dolny pasek przy włączonym GPS pokazuje w trybie mapy czas jazdy i średnią prędkość, a w trybie multimediów lub rozmowy pokazuje związane z nimi informacje.</dd>
+          <dt>MICROBike waiting screen</dt>
+          <dd>When the cluster is authenticated but Android Auto is not sending video yet (or projection is stopped), the TFT displays the MICROBike splash screen with the current status. It disappears automatically when the first map frame arrives.</dd>
+
+          <dt>Left-side telemetry bar (power)</dt>
+          <dd>Two live power indicators appear in the left margin, above and below the cluster’s built-in arrows:
+            <ul>
+              <li><strong>Top — scooter battery voltage</strong>, e.g. <code>14.1V</code> (or white <code>--.-V</code> when no fresh reading is available).</li>
+              <li><strong>Bottom — phone battery level</strong>, e.g. <code>82%</code> (green at normal level; a yellow lightning bolt appears on the left while charging; white <code>--%</code> when unavailable).</li>
+              <li>Readings below your warning threshold change colour, and critical conditions <strong>flash red every 0.5 s</strong> (see <a href="#battery-alerts">Scooter battery &amp; alerts</a>).</li>
+            </ul>
+          </dd>
+
+          <dt>Contextual OSD card (top-right corner)</dt>
+          <dd>Switching handlebar mode to <strong>MEDIA</strong> or <strong>MENU</strong>, or receiving/making a <strong>CALL</strong>, brings up a compact card in the top-right corner showing what <kbd>↑</kbd> and <kbd>↓</kbd> currently do. During an active call, the card also shows the live Android microphone state: cyan <strong>MIC</strong> (unmuted), red crossed-out mic (muted) or grey <strong>MIC ?</strong> (unknown). Single-press map actions show a 2-second confirmation toast underneath.</dd>
+
+          <dt>Bottom cluster status bar</dt>
+          <dd>Replaces the stock bottom label with live contextual telemetry (automatically trimmed to the cluster’s character limit):
+            <ul>
+              <li><strong>MAP and MENU modes:</strong> active riding time (<code>Time:</code> when moving &gt;2 km/h) and average speed (<code>Avg:</code>). Left blank when Phone GPS is off.</li>
+              <li><strong>MEDIA mode:</strong> <code>[PLAY]</code> or <code>[PAUSE]</code> status and the current track title (requires Notification access).</li>
+              <li><strong>CALL mode:</strong> caller name or number and active call timer, or an incoming call alert.</li>
+              <li><strong>Charging fault warning (top priority):</strong> when fresh GPS speed exceeds 30 km/h and scooter voltage is below 13.8 V, the bottom bar displays <strong><code>! NOT CHARGING.</code></strong> with the current voltage.</li>
+            </ul>
+          </dd>
         </dl>
+
+        <!-- SCREENSHOT: manual/images/11-podglad-licznika-tft.png -->
+        <figure class="shot">
+          <img src="images/11-podglad-licznika-tft.png"
+               alt="Instrument cluster preview showing map, left telemetry bar, OSD card and bottom status bar"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Screenshot 11</span>
+            <code class="shot-file">images/11-podglad-licznika-tft.png</code>
+            <span class="shot-desc">“INSTRUMENT CLUSTER PREVIEW” (or photo of Yamaha NMAX TFT) showing map, left voltage/battery bar, top-right OSD card and bottom status bar.</span>
+          </div>
+          <figcaption>Cluster layout: map, side power bar, top-right OSD card and bottom status bar.</figcaption>
+        </figure>
       </section>
 
-      <section id="pomoc">
-        <h2>Gdy coś nie działa</h2>
+      <section id="handlebar-osd">
+        <h2>Handlebar controls and contextual OSD modes</h2>
+        <p>The physical <kbd>↑</kbd> and <kbd>↓</kbd> handlebar buttons (and the on-screen arrows in MICROBike) use multi-click gestures within a <strong>650 ms</strong> window across four contextual modes.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>OSD mode</th>
+                <th><kbd>↑</kbd> (1×)</th>
+                <th><kbd>↓</kbd> (1×)</th>
+                <th>Auto-return</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MAP</strong> (default)</td>
+                <td>Default: <strong>Cycle zoom</strong> (+ / − / centre)*</td>
+                <td>Default: <strong>Back + centre</strong>*</td>
+                <td>Default mode</td>
+              </tr>
+              <tr>
+                <td><strong>MEDIA</strong></td>
+                <td>Next track</td>
+                <td>Play / Pause</td>
+                <td>After <strong>20 s</strong> idle → MAP</td>
+              </tr>
+              <tr>
+                <td><strong>MENU</strong> (AA Home)</td>
+                <td>Next item (rotary +1)</td>
+                <td>Select item</td>
+                <td>After <strong>60 s</strong> idle or when moving → MAP</td>
+              </tr>
+              <tr>
+                <td><strong>CALL</strong> (incoming)</td>
+                <td><strong>Answer</strong> call</td>
+                <td><strong>Decline</strong> call</td>
+                <td>When ended / declined → MAP</td>
+              </tr>
+              <tr>
+                <td><strong>CALL</strong> (active call)</td>
+                <td><strong>Mute / unmute microphone</strong></td>
+                <td><strong>Hang up</strong></td>
+                <td>When call ends → MAP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><small>* Single presses (<kbd>↑ 1×</kbd> and <kbd>↓ 1×</kbd>) in <strong>MAP</strong> mode can be customised in settings.</small></p>
+
+        <h3>Global gestures (available in every mode)</h3>
+        <dl class="controls">
+          <dt><kbd>↑</kbd> twice (2×)</dt>
+          <dd>Cycles through OSD modes: <strong>MAP → MEDIA → MENU → CALL</strong> (CALL is included only during an active/incoming call).</dd>
+          <dt><kbd>↓</kbd> twice (2×)</dt>
+          <dd>Activates the Android Auto <strong>Voice assistant</strong>.</dd>
+          <dt><kbd>↑</kbd> or <kbd>↓</kbd> three times (3×)</dt>
+          <dd>Disabled by default (<em>No action</em>). You can assign custom global actions in settings. Note: assigning any action to a triple press adds a 650 ms delay to the matching double press while waiting for a possible third click.</dd>
+        </dl>
+
+        <h3>Key control details</h3>
+        <ul>
+          <li><strong>Cycle zoom (+ / − / centre):</strong> each press steps through zoom in, zoom out, and back + centre. After 10 seconds without pressing, the cycle resets to zoom in.</li>
+          <li><strong>MENU mode (stationary only):</strong> for safety, MENU is only available when <strong>Phone GPS is on and reports 0 km/h</strong>. Entering MENU opens Android Auto Home; moving off, losing GPS, turning GPS off or exiting automatically returns to navigation.</li>
+          <li><strong>Customisation (“5. Handlebar buttons”):</strong> choose from Zoom in, Zoom out, Cycle zoom, Back, Centre, Back + centre, Map, Android Auto home, Select item, Next/Previous item, Next area, Android Auto calls, Call, End call, Mute microphone, Android Auto media player, Play/Pause, Next track, Pause, Stop or No action. Tap <kbd>Restore default buttons</kbd> to reset.</li>
+        </ul>
+
+        <!-- SCREENSHOT: manual/images/12-przyciski-kierownicy.png -->
+        <figure class="shot">
+          <img src="images/12-przyciski-kierownicy.png"
+               alt="5. Handlebar buttons settings section in MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Screenshot 12</span>
+            <code class="shot-file">images/12-przyciski-kierownicy.png</code>
+            <span class="shot-desc">“5. Handlebar buttons” panel showing UP/DOWN 1×, 2×, 3× bindings and “Restore default buttons”.</span>
+          </div>
+          <figcaption>Customising handlebar gestures in <strong>5. Handlebar buttons</strong>.</figcaption>
+        </figure>
+      </section>
+
+      <section id="moto-connect">
+        <h2>Moto Connect and Auto-start with ignition</h2>
+        <h3>Moto Connect (saved vehicles)</h3>
+        <p>The <strong>MOTO CONNECT</strong> card manages your Bluetooth connection to the Yamaha instrument cluster:</p>
+        <ul>
+          <li>Save up to <strong>3 YCCU vehicles</strong> and reconnect to any saved scooter with a single tap.</li>
+          <li>Tapping <kbd>X</kbd> removes a vehicle from MICROBike’s list while keeping its Android Bluetooth pairing intact.</li>
+          <li>Tapping <kbd>Disconnect</kbd> ends the active cluster session (and turns off Auto-start if enabled).</li>
+        </ul>
+
+        <h3>Auto-start with ignition</h3>
+        <p>The <strong>Auto-start with ignition</strong> card runs a lightweight Bluetooth standby service in the background so MICROBike connects automatically when you switch on your scooter.</p>
+        <ul>
+          <li><strong>Off by default:</strong> select a saved vehicle and toggle the switch on explicitly.</li>
+          <li><strong>How standby works:</strong> a foreground service with a notification retries roughly every 30 s (max 8 s per attempt). Bluetooth radio events (Bluetooth turning on or a matching YCCU appearing) speed up the next attempt.</li>
+          <li><strong>After phone reboot:</strong> standby resumes automatically after reboot (once the phone is unlocked), subject to system battery rules. Use <kbd>Resume standby</kbd> if standby was halted.</li>
+          <li><strong>Head unit server prerequisite:</strong> Auto-start re-establishes Bluetooth automatically, but the <strong>Android Auto head unit server must already be running</strong>. Background projection starts only after YCCU authentication succeeds.</li>
+        </ul>
+        <p class="callout"><strong>Important:</strong> tapping <kbd>Disconnect</kbd> turns Auto-start off. Always disable Auto-start before opening <strong>Yamaha MyRide</strong> or <strong>StreetCross</strong> so the apps do not compete for the YCCU module.</p>
+
+        <!-- SCREENSHOT: manual/images/13-autostart-po-zaplonie.png -->
+        <figure class="shot">
+          <img src="images/13-autostart-po-zaplonie.png"
+               alt="Auto-start with ignition card in MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Screenshot 13</span>
+            <code class="shot-file">images/13-autostart-po-zaplonie.png</code>
+            <span class="shot-desc">“Auto-start with ignition” card enabled with a selected YCCU scooter.</span>
+          </div>
+          <figcaption>Configuring automatic reconnection when the ignition is switched on.</figcaption>
+        </figure>
+      </section>
+
+      <section id="display-settings">
+        <h2>Display mode, navigation apps, map theme and DPI</h2>
+        <p>The <strong>SETTINGS</strong> card lets you tailor how the map looks on the cluster and how navigation apps launch.</p>
+
+        <dl class="features">
+          <dt>1. Scooter display mode</dt>
+          <dd>
+            <ul>
+              <li><strong>No dock</strong> (default) — crops out the left Android Auto app dock so the map fills the maximum area of the TFT display.</li>
+              <li><strong>Full screen</strong> — sends the entire Android Auto screen, including the left app dock, fitted proportionally.</li>
+            </ul>
+          </dd>
+
+          <dt>2. Maps on the scooter and phone</dt>
+          <dd>Choose the scooter’s navigation app directly inside Android Auto’s menu on the live preview. Optionally toggle <strong>Also open the map app on your phone</strong> to automatically open a chosen app on the phone when Android Auto connects. <kbd>Select</kbd> lists installed supported apps among <strong>Google Maps, Yanosik, Waze, Organic Maps, OsmAnd and OsmAnd+</strong> (you can also launch it manually with <kbd>Open map</kbd>). This setting applies to the phone only and does not switch the app inside Android Auto.</dd>
+
+          <dt>3. Brightness (day / night map theme)</dt>
+          <dd>
+            <ul>
+              <li><strong>Light</strong> — forces the day map theme in Android Auto.</li>
+              <li><strong>Dark</strong> — forces the night map theme.</li>
+              <li><strong>Auto</strong> — calculates civil dawn and dusk locally from your last GPS position and phone clock (recalculated immediately and every 10 minutes, fully offline). Requires <strong>precise location</strong> permission; if no GPS fix is available yet, it defaults to day mode.</li>
+            </ul>
+          </dd>
+
+          <dt>4. Display density (DPI)</dt>
+          <dd>Choose between <strong>120, 140, 160 (default) and 180 DPI</strong>. Higher DPI enlarges text, buttons and UI elements; lower DPI shows more of the map. Releasing the slider briefly reconnects Android Auto to apply the new layout. Check your <strong>Centre</strong> point calibration after changing DPI.</dd>
+        </dl>
+
+        <!-- SCREENSHOT: manual/images/14-ustawienia-obrazu-dpi.png -->
+        <figure class="shot">
+          <img src="images/14-ustawienia-obrazu-dpi.png"
+               alt="Display mode, Brightness and Display density DPI settings"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Screenshot 14</span>
+            <code class="shot-file">images/14-ustawienia-obrazu-dpi.png</code>
+            <span class="shot-desc">“SETTINGS” card showing No dock / Full screen, Brightness (Light / Dark / Auto) and Display density DPI slider (120–180).</span>
+          </div>
+          <figcaption>Adjusting display mode, day/night theme and <strong>DPI</strong>.</figcaption>
+        </figure>
+      </section>
+
+      <section id="saved-places">
+        <h2>Home, Work, Favourites and sharing from Google Maps</h2>
+        <p>MICROBike connects the Yamaha cluster’s built-in navigation menu to <strong>Google Maps</strong> on your phone. All saved addresses remain stored locally on your device.</p>
+
+        <h3>Quickest way: share directly from Google Maps</h3>
+        <ol class="steps">
+          <li>Open any destination or pin in <strong>Google Maps</strong>.</li>
+          <li>Tap <strong>Share</strong> and choose <strong>MICROBike</strong>.</li>
+          <li>On the <strong>PLACE FROM GOOGLE MAPS</strong> screen, edit the name or address if needed, then tap <strong>Save as Home</strong>, <strong>Save as Work</strong>, <strong>Add to favourites</strong> (up to 5 places) or <strong>Navigate to this place</strong> immediately.</li>
+        </ol>
+
+        <!-- SCREENSHOT: manual/images/15-google-maps-udostepnij.png -->
+        <figure class="shot">
+          <img src="images/15-google-maps-udostepnij.png"
+               alt="MICROBike screen after sharing a place from Google Maps"
+               loading="lazy">
+          <div class="shot-placeholder" hidden>
+            <span class="shot-badge">Screenshot 15</span>
+            <code class="shot-file">images/15-google-maps-udostepnij.png</code>
+            <span class="shot-desc">“PLACE FROM GOOGLE MAPS” screen after Share → MICROBike (Save as Home, Work, Add to favourites, Navigate).</span>
+          </div>
+          <figcaption>Saving destinations straight from Google Maps to Home, Work or Favourites.</figcaption>
+        </figure>
+
+        <h3>Using saved places from the app and cluster menu</h3>
+        <ul>
+          <li><strong>Home and Work:</strong> type addresses manually in <em>Home and work — Google Maps</em> and test them with <kbd>Ride home</kbd> / <kbd>Ride to work</kbd>. Selecting Home or Work in the Yamaha cluster menu starts the same route.</li>
+          <li><strong>Favourite places (up to 5):</strong> add a name and address/search query via <kbd>Add favourite place</kbd>. Complete entries sync to the cluster’s <strong>Favourites</strong> menu (distance and bearing are not computed on the cluster list).</li>
+          <li><strong>Nearest petrol station:</strong> available in both the app and the cluster’s stations menu — triggers a nearby petrol station search in Google Maps.</li>
+          <li><strong>Stop route:</strong> selecting stop route on the cluster asks Google Maps to exit active navigation.</li>
+        </ul>
+        <p class="tip"><strong>Tip:</strong> grant optional <strong>Display over other apps</strong> permission so routes selected from the cluster menu can launch while MICROBike runs in the background. If Google Maps already has an active route that cannot be ended automatically, MICROBike will prompt you to end it manually so the new destination is not added as a waypoint.</p>
+      </section>
+
+      <section id="gps-stats">
+        <h2>GPS speed and ride statistics</h2>
+        <p>The <strong>GPS speed → Android Auto</strong> card uses your phone’s GPS receiver (enabled automatically once precise location is granted; turning <kbd>Phone GPS</kbd> off in the app or notification is remembered).</p>
+        <ul>
+          <li><strong>Speed for Android Auto:</strong> fresh readings (≤5 s old) are forwarded to Android Auto so navigation apps can adjust automatic map zoom based on speed. Missing GPS data is never reported as 0 km/h.</li>
+          <li><strong>Ride statistics on the cluster bottom bar:</strong> tracks active <strong>riding time</strong> (above 2 km/h) and <strong>average speed</strong> across all OSD modes (including while in MEDIA or CALL). Reset any time with <kbd>Reset ride statistics</kbd>.</li>
+          <li><strong>Safety &amp; charging checks:</strong> fresh GPS enables stationary <strong>MENU</strong> mode at 0 km/h and powers the charging fault alert above 30 km/h.</li>
+        </ul>
+      </section>
+
+      <section id="battery-alerts">
+        <h2>Scooter battery voltage and power warnings</h2>
+        <p>The <strong>SCOOTER BATTERY</strong> card reads your scooter’s battery voltage (in volts) directly from the CCU via Bluetooth Low Energy — <strong>without needing GPS location</strong>.</p>
+
+        <ul>
+          <li><strong>Automatic polling:</strong> once the cluster connects and authenticates in Moto Connect, MICROBike reads voltage after 2 s and refreshes every <strong>30 seconds</strong>. Readings stay valid for 10 minutes.</li>
+          <li><strong>Manual check:</strong> tap <kbd>Check voltage</kbd> at any time with a connected vehicle. Requires ignition on and Yamaha MyRide / StreetCross closed.</li>
+          <li><strong>Custom warning thresholds:</strong> at the bottom of Settings (<strong>Instrument cluster power warnings</strong>), adjust:
+            <ul>
+              <li><strong>Phone battery threshold:</strong> 10% to 50% in 10% steps (default <strong>20%</strong>, when not charging).</li>
+              <li><strong>Scooter battery threshold:</strong> 12.0 V to 12.5 V in 0.1 V steps (default <strong>12.4 V</strong>).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Critical flashing alerts on the TFT</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Condition</th>
+                <th>Trigger</th>
+                <th>TFT display behaviour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Critically low scooter battery</strong></td>
+                <td>Voltage ≤ <strong>11.5 V</strong></td>
+                <td>Scooter voltage indicator <span class="badge badge-warn">flashes red</span> (every 0.5 s).</td>
+              </tr>
+              <tr>
+                <td><strong>Not charging while riding</strong></td>
+                <td>Fresh GPS &gt; <strong>30 km/h</strong> and voltage &lt; <strong>13.8 V</strong></td>
+                <td>Scooter voltage <span class="badge badge-warn">flashes red</span> and bottom bar shows <strong><code>! NOT CHARGING.</code></strong> with voltage.</td>
+              </tr>
+              <tr>
+                <td><strong>Critically low phone battery</strong></td>
+                <td>Level ≤ <strong>10%</strong> (not charging)</td>
+                <td>Phone battery indicator <span class="badge badge-warn">flashes red</span> (every 0.5 s).</td>
+              </tr>
+              <tr>
+                <td><strong>Normal / charging</strong></td>
+                <td>Above warning thresholds</td>
+                <td>Steady readout; phone battery shown in <span class="badge badge-ok">green</span> (with yellow lightning icon while charging).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SCREENSHOT: manual/images/16-gps-i-akumulator.png -->
+        <figure class="shot">
+          <img src="images/16-gps-i-akumulator.png"
+               alt="GPS speed and SCOOTER BATTERY cards in MICROBike"
+               loading="lazy">
+          <div class="shot-placeholder shot-placeholder--wide" hidden>
+            <span class="shot-badge">Screenshot 16</span>
+            <code class="shot-file">images/16-gps-i-akumulator.png</code>
+            <span class="shot-desc">“GPS speed → Android Auto” card (live speed + Reset ride statistics) and “SCOOTER BATTERY” card showing voltage in V.</span>
+          </div>
+          <figcaption>Live GPS speed readout and scooter battery voltage monitoring.</figcaption>
+        </figure>
+      </section>
+
+      <section id="permissions">
+        <h2>App permissions, language and privacy</h2>
+        <p>Review or change any permission at any time under <strong>App permissions</strong> (<kbd>Manage permissions</kbd>).</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Permission</th>
+                <th>Purpose</th>
+                <th>What still works without it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Nearby devices</strong></td>
+                <td>Finding and connecting to the Yamaha YCCU cluster, Auto-start and battery voltage checks.</td>
+                <td>The Android Auto preview still works on your phone.</td>
+              </tr>
+              <tr>
+                <td><strong>Precise location (GPS)</strong></td>
+                <td>GPS speed for Android Auto, ride statistics, Auto day/night theme, stationary MENU mode and charging fault alert.</td>
+                <td>Map projection and cluster link work normally; Light/Dark theme can be chosen manually.</td>
+              </tr>
+              <tr>
+                <td><strong>MICROBike notifications</strong> (Android 13+)</td>
+                <td>Persistent notifications for Bluetooth and GPS services with stop buttons.</td>
+                <td>Services can still run, without notifications in the Android shade.</td>
+              </tr>
+              <tr>
+                <td><strong>Phone state</strong></td>
+                <td>More accurate detection of ringing and active calls on the cluster. Does not access contacts or call history.</td>
+                <td>MICROBike falls back to detecting calls from the phone’s audio mode.</td>
+              </tr>
+              <tr>
+                <td><strong>Notification access (OSD)</strong></td>
+                <td>Displays caller name/number, track title and play/pause status on the cluster.</td>
+                <td>CALL and MEDIA modes still work with generic labels.</td>
+              </tr>
+              <tr>
+                <td><strong>Display over other apps</strong></td>
+                <td>Launches routes from the cluster menu (Home, Work, Favourites) while MICROBike is in the background.</td>
+                <td>Cluster connection and starting routes while MICROBike is open work normally.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Privacy and app language</h3>
+        <ul>
+          <li><strong>Local by design:</strong> GPS coordinates are never stored, and caller/track metadata stays in volatile memory only while the app runs.</li>
+          <li><strong>App language:</strong> MICROBike currently offers <strong>English</strong> and <strong>Polish</strong> interfaces (additional app languages are planned). On Android 13 and newer, change the app language in Android settings (<em>Settings → Apps → MICROBike → Language</em>).</li>
+        </ul>
+      </section>
+
+      <p class="part-heading">Part 3 · Support</p>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+
         <details>
-          <summary>Podgląd Android Auto się nie pojawia</summary>
-          <p>Sprawdź, czy serwer jednostki centralnej jest uruchomiony. Jeśli był włączony, zatrzymaj go w ustawieniach Android Auto, uruchom ponownie i wróć do MICROBike.</p>
+          <summary>Android Auto preview does not appear or stays stuck connecting</summary>
+          <p>Check that the head unit server is running in Android Auto (Android Auto settings → <kbd>⋮</kbd> → <strong>Start head unit server</strong>). If it was already running, select <strong>Stop head unit server</strong>, start it again, return to MICROBike and tap <kbd>START</kbd>.</p>
         </details>
+
         <details>
-          <summary>MICROBike nie znajduje licznika</summary>
-          <p>Sprawdź zapłon, sparowanie z YCCU i zgodę <strong>Urządzenia w pobliżu</strong>. Rozłącz inne aplikacje korzystające z licznika, a następnie ponów próbę w Moto Connect.</p>
+          <summary>MICROBike cannot find or connect to the YCCU cluster</summary>
+          <p>Verify four things: the scooter ignition is on, <strong>YCCU</strong> is already paired in Android’s Bluetooth settings, MICROBike has <strong>Nearby devices</strong> permission, and both <strong>StreetCross</strong> and <strong>Yamaha MyRide</strong> are completely closed. Then retry in <strong>MOTO CONNECT</strong>.</p>
         </details>
+
         <details>
-          <summary>Projekcja znika po zgaszeniu ekranu na Xiaomi</summary>
-          <p>W ustawieniach telefonu otwórz informacje o aplikacji Android Auto. Jeżeli dostępny jest <strong>Autostart w tle</strong>, włącz go. W ustawieniach baterii aplikacji wybierz <strong>Bez ograniczeń</strong>. Jeśli system usypia również MICROBike, sprawdź te same ustawienia dla MICROBike. Nazwy i położenie opcji zależą od wersji MIUI lub HyperOS.</p>
-          <p class="support-link"><a href="https://www.mi.com/global/support/faq/details/KA-538010/">Pomoc Xiaomi dotycząca ograniczeń baterii</a></p>
+          <summary>Projection stops after turning off the screen (especially Xiaomi / MIUI / HyperOS)</summary>
+          <p>Aggressive OEM battery savers can put Android Auto or MICROBike to sleep shortly after the screen locks:</p>
+          <ol class="steps">
+            <li>Open phone <strong>Settings → Apps → Android Auto</strong> (App info).</li>
+            <li>If <strong>Background autostart</strong> is available, turn it on.</li>
+            <li>Open <strong>Battery saver / Battery</strong> and choose <strong>No restrictions</strong>.</li>
+            <li>If the system also stops MICROBike (e.g. during Auto-start standby), repeat the same steps for <strong>MICROBike</strong>.</li>
+          </ol>
+          <p>Exact menu names vary slightly across MIUI, HyperOS and other manufacturers (Samsung, Huawei, OnePlus).</p>
+          <!-- SCREENSHOT: manual/images/17-xiaomi-bateria.png -->
+          <figure class="shot">
+            <img src="images/17-xiaomi-bateria.png"
+                 alt="Xiaomi battery settings set to No restrictions and Autostart enabled"
+                 loading="lazy">
+            <div class="shot-placeholder shot-placeholder--wide" hidden>
+              <span class="shot-badge">Screenshot 17</span>
+              <code class="shot-file">images/17-xiaomi-bateria.png</code>
+              <span class="shot-desc">Android Auto / MICROBike app settings on Xiaomi: Autostart enabled and Battery set to “No restrictions”.</span>
+            </div>
+            <figcaption>Example battery configuration on Xiaomi (MIUI / HyperOS).</figcaption>
+          </figure>
+          <p class="support-link"><a href="https://www.mi.com/global/support/faq/details/KA-538010/">Xiaomi support guide on battery restrictions</a></p>
         </details>
+
         <details>
-          <summary>Jak zgłosić problem</summary>
-          <p>Na dole pulpitu MICROBike dotknij <strong>Wyślij błąd do dewelopera</strong>. Opisz, co próbujesz zrobić, co widzisz i kiedy problem występuje. Możesz podać model telefonu i wersję Androida. Pomiń dane osobowe i hasła.</p>
+          <summary>Centre or Back + centre misses the button on the map</summary>
+          <p>Different navigation apps and DPI settings place the re-centre button in different spots. While stationary, open the map in MICROBike’s preview, tap <kbd>Set the map centre point</kbd> and tap the middle of the compass/centre icon inside the active map area (avoiding black margins).</p>
+        </details>
+
+        <details>
+          <summary>Cannot switch the handlebar to MENU (AA Home) mode</summary>
+          <p><strong>MENU</strong> mode is intentionally blocked while moving and requires all three conditions: <strong>precise location</strong> permission granted, <strong>Phone GPS</strong> switched on, and a fresh <strong>0 km/h</strong> GPS reading. Indoors or in an underground garage without a GPS fix, MENU stays unavailable.</p>
+        </details>
+
+        <details>
+          <summary>Caller name or song title is missing on the cluster</summary>
+          <p>Open <strong>App permissions → Manage permissions</strong> and enable <strong>Notification access (OSD)</strong> for MICROBike. Enabling <strong>Phone state</strong> also improves call detection.</p>
+        </details>
+
+        <details>
+          <summary>Scooter battery voltage check fails or times out</summary>
+          <p>Ensure the ignition is on and a vehicle is connected in <strong>MOTO CONNECT</strong>. Close <strong>Yamaha MyRide</strong> and <strong>StreetCross</strong> completely (another app may hold the CCU BLE link), then tap <kbd>Check voltage</kbd>.</p>
+        </details>
+
+        <details>
+          <summary>Home / Work / Favourite adds a stop instead of starting a new route</summary>
+          <p>When Google Maps already has an active route and cannot clear it automatically, end the current navigation manually in the Android Auto preview or in Google Maps, then select your new destination again.</p>
+        </details>
+
+        <details>
+          <summary>How to report a bug or send feedback</summary>
+          <p>At the bottom of MICROBike’s main screen, tap <strong>Report a bug to the developer</strong>. Describe (up to 1,500 characters) what you tried to do, what happened and when it occurs — including your phone model and Android version helps. Only the text you type is sent (no logs or vehicle data); never include passwords or personal data.</p>
         </details>
       </section>
     </main>
   </div>
-  <footer>MICROBike to niezależny projekt. Yamaha i Android Auto to nazwy ich właścicieli.</footer>
+
+  <footer>MICROBike is an independent community project. Yamaha, Google, Android Auto and Garmin are trademarks of their respective owners.</footer>
+  <script>
+    document.querySelectorAll('.shot img').forEach(function (img) {
+      function showPlaceholder() {
+        img.hidden = true;
+        if (img.nextElementSibling) img.nextElementSibling.hidden = false;
+      }
+      img.addEventListener('error', showPlaceholder);
+      if (img.complete && img.naturalWidth === 0) showPlaceholder();
+    });
+    document.querySelectorAll('.lang-switch a[href]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.location.hash && link.getAttribute('href').indexOf('#') === -1) {
+          link.setAttribute('href', link.getAttribute('href') + window.location.hash);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
